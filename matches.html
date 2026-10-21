@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - FIND MATCHES PORTAL (find-matches.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Matches | Sanjog Matrimonial</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (Clickable Working Tabs) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#" class="nav-link active">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+    
+    <!-- Filter Bar Header -->
+    <div class="filter-bar">
+      <form class="filter-form" action="#" method="GET">
+        <div class="form-group">
+          <label class="form-label" for="f-gender">Looking for</label>
+          <select id="f-gender" name="gender" class="form-select">
+            <option value="all">All (Brides &amp; Grooms)</option>
+            <option value="bride" selected>A Bride (Female)</option>
+            <option value="groom">A Groom (Male)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-age">Age Range</label>
+          <select id="f-age" name="age" class="form-select">
+            <option value="all">All Age Groups</option>
+            <option value="21-25" selected>21 - 25 Yrs</option>
+            <option value="26-30">26 - 30 Yrs</option>
+            <option value="31-35">31 - 35 Yrs</option>
+            <option value="36-40">36 - 40 Yrs</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-city">Location</label>
+          <select id="f-city" name="city" class="form-select">
+            <option value="all" selected>All Locations</option>
+            <option value="delhi">Delhi NCR</option>
+            <option value="gurugram">Gurugram, Haryana</option>
+            <option value="mumbai">Mumbai, Maharashtra</option>
+            <option value="ahmedabad">Ahmedabad, Gujarat</option>
+            <option value="chandigarh">Chandigarh / Patiala</option>
+            <option value="hyderabad">Hyderabad, Telangana</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-prof">Profession</label>
+          <select id="f-prof" name="profession" class="form-select">
+            <option value="all" selected>All Professions</option>
+            <option value="doctor">Doctor &amp; Healthcare</option>
+            <option value="software">Software Engineer (IT)</option>
+            <option value="design">Lead UI/UX Designer</option>
+            <option value="ca">Chartered Accountant (CA)</option>
+            <option value="psychologist">Clinical Psychologist</option>
+            <option value="ai">AI / Data Science Engineer</option>
+          </select>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary btn-block">Filter Results</button>
+        </div>
+      </form>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px;">
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Showing <strong style="color: var(--text-dark);">6 Verified Matches</strong> matching your criteria
+      </p>
+      <span style="font-size: 13px; color: var(--primary); font-weight: 600;">
+        Sorted by: Relevance &amp; Mutual Preferences
+      </span>
+    </div>
+
+    <!-- Verified Matches Grid -->
+    <div class="profile-grid">
+      
+      <!-- Match 1: Dr. Priya Sharma -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile1.jpg" alt="Dr. Priya Sharma" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">Premium</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Dr. Priya Sharma</h3>
+            <span class="profile-age">24 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Delhi NCR, India</div>
+          <div class="profile-profession">💼 Doctor (MBBS, MD - Apollo)</div>
+          <p class="profile-bio">Compassionate physician with deep family values. Loves reading, classical dance, and weekend family get-togethers.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 2: Rohan Mehta -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile2.jpg" alt="Rohan Mehta" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Rohan Mehta</h3>
+            <span class="profile-age">27 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Gurugram, Haryana</div>
+          <div class="profile-profession">💼 Senior Software Engineer (MNC)</div>
+          <p class="profile-bio">B.Tech graduate from Chitkara University. Ambitious yet humble, loves fitness, tech innovations, and road trips.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 3: Ananya Joshi -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile3.jpg" alt="Ananya Joshi" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">Premium</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Ananya Joshi</h3>
+            <span class="profile-age">25 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Mumbai, Maharashtra</div>
+          <div class="profile-profession">💼 Lead UI/UX Designer (NID)</div>
+          <p class="profile-bio">Creative design professional passionate about art, books, and cultural traditions. Seeking a warm and supportive companion.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 4: Aditya Patel -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile4.jpg" alt="Aditya Patel" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Aditya Patel</h3>
+            <span class="profile-age">28 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Ahmedabad, Gujarat</div>
+          <div class="profile-profession">💼 Chartered Accountant (CA, CFA)</div>
+          <p class="profile-bio">Practicing financial advisor with traditional Gujarati roots. Vegetarian, avid reader, and values mutual family respect.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 5: Meera Singhania -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile5.jpg" alt="Meera Singhania" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Meera Singhania</h3>
+            <span class="profile-age">24 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Chandigarh / Patiala</div>
+          <div class="profile-profession">💼 Clinical Psychologist (M.Sc)</div>
+          <p class="profile-bio">Warm-hearted counselor who cherishes Punjabi family culture. Seeking an understanding and educated partner.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 6: Vikram Malhotra -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile6.jpg" alt="Vikram Malhotra" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">Premium</span>
+          </div>
+          <a href="#" class="profile-fav-btn" title="Add to Shortlist">❤</a>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <h3 class="profile-name">Vikram Malhotra</h3>
+            <span class="profile-age">29 Yrs</span>
+          </div>
+          <div class="profile-location">📍 Hyderabad, Telangana</div>
+          <div class="profile-profession">💼 Lead AI Engineer (MS Data Science)</div>
+          <p class="profile-bio">Tech leader passionate about badminton, astronomy, and community welfare. Values transparent communication and warmth.</p>
+          <div class="profile-card-actions">
+            <a href="#" class="btn btn-outline btn-sm">View Profile</a>
+            <a href="#" class="btn btn-primary btn-sm">💌 Send Interest</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+</body>
+</html>

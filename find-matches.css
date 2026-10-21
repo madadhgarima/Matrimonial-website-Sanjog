@@ -63,6 +63,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  width: 100%;
 }
 
 .profile-card {
@@ -74,6 +75,7 @@
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .profile-card:hover {

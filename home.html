@@ -6,8 +6,8 @@
   <title>Sanjog Matrimonial - Choose Your Forever</title>
   
   <!-- Google Fonts: Cormorant Garamond for Brand, Playfair Display for Headings, Poppins for Body Text -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
@@ -38,13 +38,13 @@
 
       <!-- Main Navigation Links (Clickable Working Tabs) -->
       <nav class="nav-menu">
-        <a href="#" class="nav-link active">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="find-matches.html" class="nav-link">Find Matches</a>
         <a href="my-matches.html" class="nav-link">My Matches</a>
         <a href="shortlisted.html" class="nav-link">Favorites</a>
         <a href="messages.html" class="nav-link">Messages</a>
         <a href="notifications.html" class="nav-link">Notifications</a>
-        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
@@ -52,7 +52,7 @@
       <!-- Desktop Action Buttons -->
       <div class="nav-actions">
         <a href="login.html" class="btn btn-outline btn-sm">Login</a>
-        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
       </div>
 
     </div>
@@ -74,7 +74,8 @@
         <p class="hero-subtitle">Where meaningful connections turn into beautiful beginnings. Where hearts unite and families celebrate eternal beginnings.</p>
         
         <div class="hero-actions" style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-          <a href="#" class="btn btn-primary btn-lg">Create Profile</a>
+          <a href="register.html" class="btn btn-primary btn-lg">Create Profile</a>
+          <a href="find-matches.html" class="btn btn-white btn-lg" style="background: rgba(255,255,255,0.95); color: var(--primary);">Explore Matches</a>
         </div>
 
       </div>
@@ -119,5 +120,17 @@
       </div>
     </div>
   </section>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

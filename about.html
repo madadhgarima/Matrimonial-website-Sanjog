@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - ABOUT SANJOG & MISSION (about.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Sanjog Matrimonial</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (All Non-Working) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span
+        style="color: var(--primary); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">The
+        Sanjog Philosophy</span>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; color: var(--text-dark); margin: 8px 0 16px 0;">
+        Meet. Connect. Find Your Sanjog.
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;">
+        Founded on the timeless principle that marriage is not merely the union of two individuals, but the sacred
+        blending of two families, values, and traditions.
+      </p>
+    </div>
+
+    <!-- Story Card -->
+    <article
+      style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); margin-bottom: 40px; line-height: 1.8;">
+      <h2 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary); margin-bottom: 16px;">
+        The Sanjog Story
+      </h2>
+      <p style="color: var(--text-dark); margin-bottom: 16px;">
+        In a digital era crowded with casual dating apps and superficial swipe mechanisms, <strong>Sanjog
+          Matrimonial</strong> was crafted to provide an oasis of authenticity, trust, and reverence for traditional
+        Indian matchmaking.
+      </p>
+      <p style="color: var(--text-dark); margin-bottom: 16px;">
+        We believe that finding a life companion requires understanding core personal values, lifestyle habits,
+        intellectual wavelength, family heritage, and shared life goals. Sanjog combines manual verification and
+        compatibility principles to help families connect with dignity and confidence.
+      </p>
+      <blockquote
+        style="border-left: 4px solid var(--primary); padding-left: 20px; font-style: italic; color: var(--primary-dark); font-family: var(--font-brand); font-size: 1.25rem; margin: 24px 0;">
+        "Where meaningful connections turn into beautiful beginnings. Where hearts unite and families celebrate eternal
+        beginnings."
+      </blockquote>
+    </article>
+
+    <!-- Core Pillars Grid -->
+    <div style="margin-bottom: 40px;">
+      <h3
+        style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-dark); text-align: center; margin-bottom: 24px;">
+        Our Core Pillars
+      </h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+        <div
+          style="background: #fff; padding: 26px; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">🛡️</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 8px;">100% Manually Verified
+          </h4>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Strict government ID check and phone authentication
+            before profiles can initiate contact.</p>
+        </div>
+
+        <div
+          style="background: #fff; padding: 26px; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">🔒</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 8px;">Strict Privacy Control
+          </h4>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Granular photo blurring and contact reveal preferences
+            protect candidate dignity.</p>
+        </div>
+
+        <div
+          style="background: #fff; padding: 26px; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">🕉️</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 8px;">Cultural &amp;
+            Compatibility Match</h4>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Traditional values alignment paired with career,
+            education, and lifestyle synergy.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Information Box -->
+    <div
+      style="background: var(--bg-cream); border: 1.5px dashed var(--primary); border-radius: var(--radius-lg); padding: 28px; text-align: center;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--primary); margin-bottom: 8px;">
+        Academic Project Reference
+      </h3>
+      <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 12px;">
+        <strong>Institution:</strong> Chitkara University, Punjab (CSE 3rd Semester)<br>
+        <strong>Subject:</strong> Web Technologies (Course Code: 25CSE0101)<br>
+        <strong>Implementation:</strong> 100% Pure HTML5 &amp; CSS3 (Strictly Zero JavaScript)
+      </p>
+      <a href="register.html" class="btn btn-primary">Create Your Free Profile</a>
+    </div>
+
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - CONTACT & SUPPORT HELPDESK (contact.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       
+       Page Purpose:
+       Provides contact options, campus helpdesk locations, customer service numbers, and an interactive FAQ accordion.
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us &amp; Support - Sanjog Matrimonial</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="site.css">
+  <style>
+    /* Pure CSS Details / Summary FAQ Accordion */
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-summary {
+      padding: 16px 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--primary);
+      transition: transform 0.2s ease;
+    }
+
+    details[open] .faq-summary::after {
+      content: '−';
+    }
+
+    .faq-content {
+      padding: 0 20px 16px 20px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (All Non-Working) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+
+    <div style="text-align: center; max-width: 680px; margin: 0 auto 40px auto;">
+      <h1 style="font-family: var(--font-heading); font-size: 2.3rem; color: var(--text-dark); margin-bottom: 8px;">
+        Get in Touch with Sanjog
+      </h1>
+      <p style="font-size: 15px; color: var(--text-muted);">
+        Have questions about matchmaking, profile verification, or compatibility? Our counselors are here to help your
+        family.
+      </p>
+    </div>
+
+    <!-- Contact 2-Column Grid -->
+    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 50px;">
+
+      <!-- Contact Form (Pure HTML - Zero JS) -->
+      <div
+        style="background: #fff; padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark); margin-bottom: 12px;">
+          Send an Inquiry</h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">Our matchmaking counselors respond
+          within 4 working hours.</p>
+
+        <form id="contact-form" action="#" method="POST">
+          <div id="contact-status-msg" style="display: none; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 14px; margin-bottom: 16px; font-weight: 500;"></div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="c-name">Your Full Name</label>
+            <input type="text" id="c-name" name="name" class="form-input" placeholder="e.g. Rajesh Mehra" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="c-email">Email Address</label>
+            <input type="email" id="c-email" name="email" class="form-input" placeholder="name@example.com" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="c-phone">Phone Number</label>
+            <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="c-subject">Assistance Needed</label>
+            <select id="c-subject" name="subject" class="form-select">
+              <option value="verification">Profile Verification Inquiry</option>
+              <option value="compatibility">Compatibility &amp; Preference Matching</option>
+              <option value="counselor">Dedicated Matchmaker Consultation</option>
+              <option value="technical">Technical Account Support</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label" for="c-message">Your Message / Query</label>
+            <textarea id="c-message" name="message" class="form-input" rows="4"
+              placeholder="Describe your requirement or questions..." required></textarea>
+          </div>
+          <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-block btn-lg">Submit Inquiry</button>
+        </form>
+      </div>
+
+      <!-- Campus & Corporate Offices Details -->
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div
+          style="background: #fff; padding: 26px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+          <h3
+            style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--text-dark); margin-bottom: 16px;">
+            Campus &amp; Corporate Offices</h3>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--primary); font-size: 14px;">📍 Chitkara University Innovation Desk</strong>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 4px;">
+              Chandigarh-Patiala National Highway (NH-64), Village Jhansla, Rajpura, Punjab 140401
+            </p>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="color: var(--primary); font-size: 14px;">📍 Regional Corporate Office (Delhi NCR)</strong>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 4px;">
+              Statesman House, Barakhamba Road, Connaught Place, New Delhi - 110001
+            </p>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-light); padding-top: 14px;">
+            <p style="font-size: 13.5px; margin-bottom: 6px;">📞 <strong>Helpline:</strong> +91 98765 43210 /
+              01762-507084</p>
+            <p style="font-size: 13.5px;">✉ <strong>Email:</strong> support@sanjog.in / counselors@sanjog.in</p>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--bg-cream); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <h4 style="font-size: 15px; color: var(--primary); margin-bottom: 8px;">Academic Evaluation Note</h4>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;">
+            This project was engineered for <strong>Chitkara University CSE 3rd Semester Web Technologies
+              (25CSE0101)</strong>. Built with 100% semantic HTML5 and responsive CSS3 without third-party frameworks or
+            JavaScript.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Frequently Asked Questions (Pure CSS Details/Summary) -->
+    <section id="faq" style="max-width: 800px; margin: 0 auto;">
+      <h3
+        style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-dark); text-align: center; margin-bottom: 24px;">
+        Frequently Asked Questions
+      </h3>
+
+      <details class="faq-item" open>
+        <summary class="faq-summary">How does Sanjog verify profiles?</summary>
+        <div class="faq-content">
+          Every profile on Sanjog undergoes a multi-step verification process including Government ID check
+          (Aadhaar/Passport/Driving License), contact number OTP verification, and educational degree validation.
+          Profiles that complete all verifications receive our green Verified Badge.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">Is my photograph and phone number private?</summary>
+        <div class="faq-content">
+          Absolutely. Sanjog provides complete photo and contact privacy controls. You can choose to blur your photo to
+          unregistered visitors, reveal your telephone number only to accepted interests, or keep your details private
+          upon request.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">Can parents create and manage a profile?</summary>
+        <div class="faq-content">
+          Yes! Over 45% of Sanjog profiles are managed by loving parents and siblings. During signup, you can simply
+          select "Creating profile for Daughter/Son" and provide candidate details alongside parent contact numbers.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">What is Compatibility Matching on Sanjog?</summary>
+        <div class="faq-content">
+          Our platform integrates personality, lifestyle, education, family values, and preferences to calculate
+          compatibility for lifelong harmony and mutual respect.
+        </div>
+      </details>
+    </section>
+
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

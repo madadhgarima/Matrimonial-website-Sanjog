@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - SHORTLISTED FAVORITES (favourite.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shortlisted Favorites | Sanjog Matrimonial</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (Clickable Working Tabs) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link active">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+    
+    <div style="margin-bottom: 24px;">
+      <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--text-dark);">Your Shortlisted Profiles</h2>
+      <p style="font-size: 14px; color: var(--text-muted);">You have saved <strong>3 verified profiles</strong> to review with your family.</p>
+    </div>
+
+    <div class="favorites-grid">
+      
+      <!-- Shortlisted 1 -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile1.jpg" alt="Dr. Priya Sharma" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">📷 5 Photos</span>
+          </div>
+          <span class="profile-fav-btn" style="color: var(--primary);">❤</span>
+        </div>
+        <div class="profile-card-body">
+          <h3 class="profile-name">Dr. Priya Sharma (24)</h3>
+          <p class="profile-profession">Doctor (MBBS, MD) • Delhi NCR</p>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin: 8px 0;">
+            Saved on: 10 Sep 2026 • Status: <span style="color: var(--success); font-weight: 600;">Verified Contact</span>
+          </p>
+          <div class="profile-card-actions">
+            <a href="messages.html" class="btn btn-primary btn-sm">💬 Chat Now</a>
+            <a href="profile.html" class="btn btn-outline btn-sm">View Biodata</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Shortlisted 2 -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile3.jpg" alt="Ananya Joshi" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">📷 3 Photos</span>
+          </div>
+          <span class="profile-fav-btn" style="color: var(--primary);">❤</span>
+        </div>
+        <div class="profile-card-body">
+          <h3 class="profile-name">Ananya Joshi (25)</h3>
+          <p class="profile-profession">Product Designer • Mumbai</p>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin: 8px 0;">
+            Saved on: 12 Sep 2026 • Status: <span style="color: #F57C00; font-weight: 600;">Interest Accepted</span>
+          </p>
+          <div class="profile-card-actions">
+            <a href="messages.html" class="btn btn-primary btn-sm">💬 Send Note</a>
+            <a href="profile.html" class="btn btn-outline btn-sm">View Biodata</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Shortlisted 3 -->
+      <article class="profile-card">
+        <div class="profile-card-img-wrap">
+          <img src="images/profile2.jpg" alt="Rohan Mehta" class="profile-card-img">
+          <div class="profile-card-badges">
+            <span class="badge badge-verified">✔ Verified</span>
+            <span class="badge badge-premium">📷 4 Photos</span>
+          </div>
+          <span class="profile-fav-btn" style="color: var(--primary);">❤</span>
+        </div>
+        <div class="profile-card-body">
+          <h3 class="profile-name">Rohan Mehta (27)</h3>
+          <p class="profile-profession">Software Engineer • Gurugram</p>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin: 8px 0;">
+            Saved on: 08 Sep 2026 • Status: <span style="color: var(--primary); font-weight: 600;">Profile Matched</span>
+          </p>
+          <div class="profile-card-actions">
+            <a href="messages.html" class="btn btn-primary btn-sm">💬 Chat Now</a>
+            <a href="profile.html" class="btn btn-outline btn-sm">View Biodata</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

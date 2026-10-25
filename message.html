@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - CONVERSATIONS & CHAT (message.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages &amp; Chat | Sanjog Matrimonial</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="message.css">
+</head>
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (All Non-Working) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link active">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+    <div class="chat-container">
+      
+      <!-- Left Sidebar: Recent Conversations -->
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-header">
+          <h3 style="font-size: 1.05rem; font-weight: 600;">Recent Conversations</h3>
+        </div>
+        <div class="chat-conversation-list">
+          
+          <!-- Conversation 1 (Active) -->
+          <div class="conversation-item active" style="padding: 14px; border-bottom: 1px solid var(--border-light); background: rgba(141,63,80,0.06);">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <img src="images/profile1.jpg" alt="Dr. Priya Sharma" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <strong style="font-size: 14px; color: var(--text-dark);">Dr. Priya Sharma</strong>
+                  <span style="font-size: 11px; color: var(--text-muted);">10:42 AM</span>
+                </div>
+                <p style="font-size: 12.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">
+                  Sure! My parents live in South Delhi...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 2 -->
+          <div class="conversation-item" style="padding: 14px; border-bottom: 1px solid var(--border-light);">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <img src="images/profile3.jpg" alt="Ananya Joshi" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <strong style="font-size: 14px; color: var(--text-dark);">Ananya Joshi</strong>
+                  <span style="font-size: 11px; color: var(--text-muted);">Yesterday</span>
+                </div>
+                <p style="font-size: 12.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">
+                  Shared horoscope &amp; family biodata...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 3 -->
+          <div class="conversation-item" style="padding: 14px; border-bottom: 1px solid var(--border-light);">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <img src="images/profile2.jpg" alt="Rohan Mehta" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                  <strong style="font-size: 14px; color: var(--text-dark);">Rohan Mehta</strong>
+                  <span style="font-size: 11px; color: var(--text-muted);">Sep 11</span>
+                </div>
+                <p style="font-size: 12.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px;">
+                  Let's plan a family meeting this weekend.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Right Main Chat Pane -->
+      <section class="chat-main" style="display: flex; flex-direction: column; background: #fff;">
+        
+        <!-- Chat Header -->
+        <div class="chat-header" style="padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <img src="images/profile1.jpg" alt="Dr. Priya Sharma" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);">
+            <div>
+              <h4 style="font-size: 15px; font-weight: 600; color: var(--text-dark);">Dr. Priya Sharma</h4>
+              <span style="font-size: 12px; color: var(--success); font-weight: 500;">● Active now • Verified Member</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <a href="profile.html" class="btn btn-outline btn-sm">View Biodata</a>
+            <a href="#" class="btn btn-secondary btn-sm">📞 Request Call</a>
+          </div>
+        </div>
+
+        <!-- Chat Stream Messages -->
+        <div class="chat-messages" style="flex: 1; padding: 20px; overflow-y: auto; background: #FAF6F5; display: flex; flex-direction: column; gap: 14px;">
+          
+          <div class="chat-bubble-row received" style="display: flex; gap: 10px; align-items: flex-end;">
+            <img src="images/profile1.jpg" alt="Dr. Priya Sharma" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            <div class="bubble received" style="max-width: 75%; padding: 12px 18px; font-size: 13.5px; line-height: 1.5; background: #ffffff; color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 18px 18px 18px 4px; box-shadow: 0 1px 4px rgba(59,41,44,0.04);">
+              Namaste! I reviewed your profile on Sanjog. Our family values, education, and career aspirations seem very compatible. 😊
+              <div style="font-size: 10.5px; color: var(--text-muted); text-align: right; margin-top: 4px;">10:35 AM</div>
+            </div>
+          </div>
+
+          <div class="chat-bubble-row sent" style="display: flex; gap: 10px; align-items: flex-end; justify-content: flex-end;">
+            <div class="bubble sent" style="max-width: 75%; padding: 12px 18px; font-size: 13.5px; line-height: 1.5; background: var(--primary); color: #ffffff; border-radius: 18px 18px 4px 18px; box-shadow: 0 1px 4px rgba(59,41,44,0.08);">
+              Namaste Priya! Thank you so much for reaching out. I also shared your biodata with my parents and they were very pleased with the horoscope match.
+              <div style="font-size: 10.5px; color: rgba(255,255,255,0.8); text-align: right; margin-top: 4px;">10:38 AM ✔✔</div>
+            </div>
+            <img src="images/profile2.jpg" alt="Rohan Mehta" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+          </div>
+
+          <div class="chat-bubble-row received" style="display: flex; gap: 10px; align-items: flex-end;">
+            <img src="images/profile1.jpg" alt="Dr. Priya Sharma" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            <div class="bubble received" style="max-width: 75%; padding: 12px 18px; font-size: 13.5px; line-height: 1.5; background: #ffffff; color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 18px 18px 18px 4px; box-shadow: 0 1px 4px rgba(59,41,44,0.04);">
+              That is wonderful! My family is based in South Delhi. Would you be comfortable with an introductory phone call or video meeting this Sunday?
+              <div style="font-size: 10.5px; color: var(--text-muted); text-align: right; margin-top: 4px;">10:42 AM</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Chat Form Input Bar (Pure HTML - Zero JS) -->
+        <form class="chat-input-bar" action="#" method="GET" style="padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 12px; background: #fff;">
+          <input type="text" name="chat_text" class="form-input" placeholder="Type a respectful message..." style="flex: 1;" required>
+          <button type="submit" class="btn btn-primary" style="padding: 0 24px;">Send ✈</button>
+        </form>
+
+      </section>
+
+    </div>
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

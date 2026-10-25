@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - MY MATCHES PORTAL (my-matches.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       
+       Page Purpose:
+       Displays algorithmically matched candidates based on astrology (Kundali Gunas), educational compatibility, and mutual family preferences.
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Matches | Sanjog Matrimonial</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (Clickable Working Tabs) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link active">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+    
+    <!-- Filter Tabs Row (Non-Working) -->
+    <div style="display: flex; gap: 10px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 6px;">
+      <a href="#" class="btn btn-primary btn-sm" style="border-radius: 20px;">Daily Recommendations (3)</a>
+      <a href="#" class="btn btn-outline btn-sm" style="border-radius: 20px;">Mutual Matches (4)</a>
+      <a href="#" class="btn btn-outline btn-sm" style="border-radius: 20px;">Near Me (5)</a>
+      <a href="#" class="btn btn-outline btn-sm" style="border-radius: 20px;">High Compatibility (2)</a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      
+      <!-- Match 1: Priya Sharma -->
+      <article style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; transition: var(--transition);">
+        <div style="position: relative; flex-shrink: 0;">
+          <img src="images/profile1.jpg" alt="Dr. Priya Sharma" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); box-shadow: 0 4px 12px rgba(141,63,80,0.15);">
+          <span style="position: absolute; bottom: 4px; right: 4px; background: var(--success); color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">✔ Verified</span>
+          <span style="position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.6); color: #fff; border-radius: 12px; padding: 2px 7px; font-size: 10.5px; font-weight: 500;">📷 5 Photos</span>
+        </div>
+        <div style="flex: 1; min-width: 260px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark);">Dr. Priya Sharma, 24</h3>
+            <span class="match-tag">🔥 94% Compatibility Match</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">📍 New Delhi • 💼 Doctor (MBBS, MD) • 🕉 Hindu - Brahmin</p>
+          <div style="background: var(--bg-cream); padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; margin-bottom: 16px;">
+            <strong>Compatibility Breakdown:</strong> Values: 98% • Lifestyle: 92% • Education: 95%
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="sendInterest(1)">💬 Connect Now</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="toggleFavorite(1)">❤ Shortlist</button>
+            <a href="profile.html?id=1" class="btn btn-secondary btn-sm">Full Biodata</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 2: Ananya Joshi -->
+      <article style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; transition: var(--transition);">
+        <div style="position: relative; flex-shrink: 0;">
+          <img src="images/profile3.jpg" alt="Ananya Joshi" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); box-shadow: 0 4px 12px rgba(141,63,80,0.15);">
+          <span style="position: absolute; bottom: 4px; right: 4px; background: var(--success); color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">✔ Verified</span>
+          <span style="position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.6); color: #fff; border-radius: 12px; padding: 2px 7px; font-size: 10.5px; font-weight: 500;">📷 3 Photos</span>
+        </div>
+        <div style="flex: 1; min-width: 260px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark);">Ananya Joshi, 25</h3>
+            <span class="match-tag">🔥 91% Compatibility Match</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">📍 Mumbai • 💼 UI/UX Product Designer • 🕉 Hindu - Khatri</p>
+          <div style="background: var(--bg-cream); padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; margin-bottom: 16px;">
+            <strong>Compatibility Breakdown:</strong> Values: 94% • Interests: 95% • Career: 92%
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="sendInterest(3)">💬 Connect Now</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="toggleFavorite(3)">❤ Shortlist</button>
+            <a href="profile.html?id=3" class="btn btn-secondary btn-sm">Full Biodata</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Match 3: Meera Singhania -->
+      <article style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; transition: var(--transition);">
+        <div style="position: relative; flex-shrink: 0;">
+          <img src="images/profile5.jpg" alt="Meera Singhania" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); box-shadow: 0 4px 12px rgba(141,63,80,0.15);">
+          <span style="position: absolute; bottom: 4px; right: 4px; background: var(--success); color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">✔ Verified</span>
+          <span style="position: absolute; top: 4px; left: 4px; background: rgba(0,0,0,0.6); color: #fff; border-radius: 12px; padding: 2px 7px; font-size: 10.5px; font-weight: 500;">📷 4 Photos</span>
+        </div>
+        <div style="flex: 1; min-width: 260px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark);">Meera Singhania, 24</h3>
+            <span class="match-tag">🔥 88% Compatibility Match</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">📍 Chandigarh • 💼 Clinical Psychologist (M.Sc) • 🕉 Hindu - Arora</p>
+          <div style="background: var(--bg-cream); padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; margin-bottom: 16px;">
+            <strong>Compatibility Breakdown:</strong> Values: 90% • Career: 92% • Lifestyle: 94%
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="sendInterest(5)">💬 Connect Now</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="toggleFavorite(5)">❤ Shortlist</button>
+            <a href="profile.html?id=5" class="btn btn-secondary btn-sm">Full Biodata</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

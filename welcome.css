@@ -1,0 +1,550 @@
+/* ========================================
+   SANJOG WELCOME PAGE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY / BACKGROUND
+   ======================================== */
+
+body {
+    min-height: 100vh;
+    width: 100%;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #713544 0%,
+            #4b202c 45%,
+            #28151b 100%
+        );
+
+    color: #f8eee7;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* ========================================
+   DECORATIVE CIRCLES
+   ======================================== */
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+
+.circle-one {
+    width: 420px;
+    height: 420px;
+
+    border: 1px solid rgba(235, 195, 178, 0.15);
+
+    top: -220px;
+    left: -180px;
+}
+
+
+.circle-two {
+    width: 500px;
+    height: 500px;
+
+    border: 1px solid rgba(235, 195, 178, 0.12);
+
+    bottom: -280px;
+    right: -220px;
+}
+
+
+/* ========================================
+   DECORATIVE STARS
+   ======================================== */
+
+.decor {
+    position: absolute;
+
+    color: #e2b5a5;
+
+    font-size: 24px;
+
+    opacity: 0.55;
+
+    z-index: 1;
+}
+
+
+.decor-left {
+    left: 13%;
+    top: 28%;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+
+.decor-right {
+    right: 14%;
+    bottom: 28%;
+
+    animation: float 3s ease-in-out infinite reverse;
+}
+
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* ========================================
+   MAIN CONTAINER
+   ======================================== */
+
+.welcome-container {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ========================================
+   WELCOME TEXT
+   ======================================== */
+
+.welcome-text {
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #e2b5a5;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+    animation: fadeDown 1s ease forwards;
+}
+
+
+/* ========================================
+   LOGO
+   ======================================== */
+
+.logo-wrapper {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 245, 238, 0.95);
+
+    border: 2px solid rgba(226, 181, 165, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.25);
+
+    animation: logoAppear 1s ease forwards;
+}
+
+
+/* Keep logo at a controlled size */
+
+.logo {
+    width: 75px;
+    height: 75px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* ========================================
+   BRAND NAME
+   ======================================== */
+
+h1 {
+    font-size: 54px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #f8eee7;
+
+    margin-bottom: 3px;
+
+    animation: fadeUp 1s ease 0.2s both;
+}
+
+
+/* ========================================
+   TAGLINE
+   ======================================== */
+
+.tagline {
+    font-size: 17px;
+
+    font-style: italic;
+
+    color: #e2b5a5;
+
+    letter-spacing: 0.4px;
+
+    animation: fadeUp 1s ease 0.35s both;
+}
+
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 250px;
+
+    margin: 28px 0 25px;
+
+    animation: fadeUp 1s ease 0.45s both;
+}
+
+
+.divider span {
+    height: 1px;
+
+    flex: 1;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(226, 181, 165, 0.65)
+        );
+}
+
+
+.divider span:last-child {
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            rgba(226, 181, 165, 0.65)
+        );
+}
+
+
+.diamond {
+    font-size: 8px;
+
+    color: #e2b5a5;
+}
+
+
+/* ========================================
+   MAIN HEADING
+   ======================================== */
+
+h2 {
+    font-size: 38px;
+
+    line-height: 1.18;
+
+    font-weight: 700;
+
+    color: #fff8f3;
+
+    margin-bottom: 15px;
+
+    animation: fadeUp 1s ease 0.55s both;
+}
+
+
+h2 span {
+    color: #e5b9a7;
+}
+
+
+/* ========================================
+   DESCRIPTION
+   ======================================== */
+
+.description {
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #ddcbc4;
+
+    max-width: 470px;
+
+    margin-bottom: 34px;
+
+    animation: fadeUp 1s ease 0.65s both;
+}
+
+
+/* ========================================
+   LOADING SECTION
+   ======================================== */
+
+.loading-section {
+    width: 320px;
+
+    animation: fadeUp 1s ease 0.75s both;
+}
+
+
+.loading-text {
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: #c7aaa1;
+
+    margin-bottom: 10px;
+}
+
+
+/* ========================================
+   LOADING BAR
+   ======================================== */
+
+.loading-background {
+    width: 100%;
+
+    height: 4px;
+
+    background: rgba(255, 240, 232, 0.2);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.loading-bar {
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d6a18f,
+            #f0c7b5,
+            #d6a18f
+        );
+
+    border-radius: 20px;
+
+    animation: loading 3s linear forwards;
+}
+
+
+@keyframes loading {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+
+/* ========================================
+   BOTTOM TEXT
+   ======================================== */
+
+.bottom-text {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+
+    color: #c7aaa1;
+
+    z-index: 2;
+}
+
+
+.bottom-text span {
+    color: #e2b5a5;
+
+    margin: 0 7px;
+}
+
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes logoAppear {
+    from {
+        opacity: 0;
+
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    .welcome-container {
+        padding: 25px;
+    }
+
+
+    .logo-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+
+    h1 {
+        font-size: 44px;
+    }
+
+
+    h2 {
+        font-size: 30px;
+    }
+
+
+    .description {
+        font-size: 14px;
+
+        padding: 0 10px;
+    }
+
+
+    .loading-section {
+        width: 250px;
+    }
+
+
+    .bottom-text {
+        font-size: 8px;
+
+        letter-spacing: 0.8px;
+    }
+
+
+    .decor-left {
+        left: 7%;
+    }
+
+
+    .decor-right {
+        right: 7%;
+    }
+
+}

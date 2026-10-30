@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production build artifacts
+dist/
+
+# Temporary and backup files
+scratch/
+backup/
+app.backup.js
+indextemp.html
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.log

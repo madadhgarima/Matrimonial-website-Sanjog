@@ -54,14 +54,10 @@
       });
     }
 
-    // Gender change listener to update default avatar if user has not uploaded custom photo
-    const genderSelect = document.getElementById('r-gender');
-    if (genderSelect && photoPreview) {
-      genderSelect.addEventListener('change', () => {
-        if (!uploadedPhotoBase64) {
-          photoPreview.src = genderSelect.value === 'male' ? 'images/profile2.jpg' : 'images/profile1.jpg';
-        }
-      });
+    // Initialize preview with existing photo or neutral default avatar
+    if (photoPreview) {
+      const existingProfile = window.getUserProfile ? window.getUserProfile() : null;
+      photoPreview.src = existingProfile?.photo || 'images/default-avatar.svg';
     }
 
     // Pre-populate if existing profile or active user
@@ -96,45 +92,48 @@
       }
     };
 
-    if (existingProfile && (isEdit || existingProfile.dob || existingProfile.degree)) {
+    const hasSavedDetails = !!(existingProfile && (existingProfile.dob || existingProfile.gender || existingProfile.degree));
+
+    if (isEdit || hasSavedDetails) {
       if (heading) heading.textContent = 'Edit Your Sanjog Profile';
       if (subtitle) subtitle.textContent = 'Update your biodata details, partner expectations, and verified photo.';
       if (submitBtn) submitBtn.textContent = 'Save Changes & Update Profile ✔';
 
-      setValue('r-profile-for', existingProfile.profileFor || 'myself');
-      setValue('r-fullname', existingProfile.fullname || (activeUser ? activeUser.name : ''));
-      setValue('r-email', existingProfile.email || (activeUser ? activeUser.email : ''));
-      setValue('r-phone', existingProfile.phone || '');
-      setValue('r-gender', existingProfile.gender || 'female');
-      setValue('r-dob', existingProfile.dob || '');
-      setValue('r-religion', existingProfile.religionKey || 'hindu');
-      setValue('r-caste', existingProfile.caste || '');
-      setValue('r-manglik', existingProfile.manglikKey || 'non-manglik');
-      setValue('r-degree', existingProfile.degree || '');
-      setValue('r-occupation', existingProfile.occupation || '');
-      setValue('r-income', existingProfile.incomeKey || '15-25');
-      setValue('r-location', existingProfile.location || '');
-      setValue('r-hobbies', existingProfile.hobbies || '');
-      setValue('r-diet', existingProfile.diet || 'Vegetarian');
-      setValue('r-about', existingProfile.about || '');
+      // Prefill ONLY the actual details previously saved (no fake defaults)
+      if (existingProfile?.profileFor) setValue('r-profile-for', existingProfile.profileFor);
+      setValue('r-fullname', existingProfile?.fullname || (activeUser ? activeUser.name : ''));
+      setValue('r-email', existingProfile?.email || (activeUser ? activeUser.email : ''));
+      if (existingProfile?.phone) setValue('r-phone', existingProfile.phone);
+      if (existingProfile?.gender) setValue('r-gender', existingProfile.gender);
+      if (existingProfile?.dob) setValue('r-dob', existingProfile.dob);
+      if (existingProfile?.religionKey || existingProfile?.religion) setValue('r-religion', existingProfile.religionKey || existingProfile.religion);
+      if (existingProfile?.caste) setValue('r-caste', existingProfile.caste);
+      if (existingProfile?.manglikKey || existingProfile?.manglik) setValue('r-manglik', existingProfile.manglikKey || existingProfile.manglik);
+      if (existingProfile?.degree) setValue('r-degree', existingProfile.degree);
+      if (existingProfile?.occupation) setValue('r-occupation', existingProfile.occupation);
+      if (existingProfile?.incomeKey || existingProfile?.income) setValue('r-income', existingProfile.incomeKey || existingProfile.income);
+      if (existingProfile?.location) setValue('r-location', existingProfile.location);
+      if (existingProfile?.hobbies) setValue('r-hobbies', existingProfile.hobbies);
+      if (existingProfile?.diet) setValue('r-diet', existingProfile.diet);
+      if (existingProfile?.about) setValue('r-about', existingProfile.about);
 
-      // Pre-fill Partner Preferences if available
-      if (existingProfile.partnerPreferences) {
+      // Pre-fill Partner Preferences only if actually saved previously
+      if (existingProfile?.partnerPreferences) {
         const pp = existingProfile.partnerPreferences;
-        setValue('pref-age-min', pp.ageMin !== undefined ? pp.ageMin : '21');
-        setValue('pref-age-max', pp.ageMax !== undefined ? pp.ageMax : '30');
-        setValue('pref-height-min', pp.heightMin || '');
-        setValue('pref-height-max', pp.heightMax || '');
-        setValue('pref-location', pp.location === 'No Preference' ? '' : (pp.location || ''));
-        setValue('pref-profession', pp.profession || 'No Preference');
-        setValue('pref-education', pp.education || 'No Preference');
-        setValue('pref-religion', pp.religion || 'No Preference');
-        setValue('pref-caste', pp.caste === 'No Preference' ? '' : (pp.caste || ''));
-        setValue('pref-diet', pp.diet || 'No Preference');
-        setValue('pref-drinking', pp.drinking || 'No Preference');
-        setValue('pref-smoking', pp.smoking || 'No Preference');
-        setValue('pref-about-partner', pp.aboutPartner || '');
-        setValue('pref-other', pp.other || '');
+        if (pp.ageMin) setValue('pref-age-min', pp.ageMin);
+        if (pp.ageMax) setValue('pref-age-max', pp.ageMax);
+        if (pp.heightMin) setValue('pref-height-min', pp.heightMin);
+        if (pp.heightMax) setValue('pref-height-max', pp.heightMax);
+        if (pp.location) setValue('pref-location', pp.location);
+        if (pp.profession) setValue('pref-profession', pp.profession);
+        if (pp.education) setValue('pref-education', pp.education);
+        if (pp.religion) setValue('pref-religion', pp.religion);
+        if (pp.caste) setValue('pref-caste', pp.caste);
+        if (pp.diet) setValue('pref-diet', pp.diet);
+        if (pp.drinking) setValue('pref-drinking', pp.drinking);
+        if (pp.smoking) setValue('pref-smoking', pp.smoking);
+        if (pp.aboutPartner) setValue('pref-about-partner', pp.aboutPartner);
+        if (pp.other) setValue('pref-other', pp.other);
       }
 
       // Smooth scroll if landed via #partner-preferences edit link
@@ -145,7 +144,7 @@
         }, 350);
       }
 
-      if (existingProfile.photo) {
+      if (existingProfile?.photo) {
         uploadedPhotoBase64 = existingProfile.photo;
         if (photoPreview) photoPreview.src = existingProfile.photo;
       }
@@ -159,10 +158,22 @@
 
       const termsCheck = document.getElementById('r-terms');
       if (termsCheck) termsCheck.checked = true;
-    } else if (activeUser) {
-      // New profile for authenticated user: prefill account details
-      setValue('r-fullname', activeUser.name);
-      setValue('r-email', activeUser.email);
+    } else {
+      // New profile for new user or authenticated user: all profile fields remain blank
+      if (heading) heading.textContent = isEdit ? 'Edit Your Sanjog Profile' : 'Create Your Sanjog Profile';
+      if (submitBtn) submitBtn.textContent = isEdit ? 'Save Changes & Update Profile ✔' : 'Save Changes & Create Profile ✔';
+
+      const currentName = existingProfile?.fullname || (activeUser ? activeUser.name : '');
+      const currentEmail = existingProfile?.email || (activeUser ? activeUser.email : '');
+      if (currentName) setValue('r-fullname', currentName);
+      if (currentEmail) setValue('r-email', currentEmail);
+      if (existingProfile?.phone) setValue('r-phone', existingProfile.phone);
+
+      const passInput = document.getElementById('r-password');
+      if (passInput && (activeUser || isEdit)) {
+        passInput.removeAttribute('required');
+        passInput.placeholder = 'Leave blank to keep existing password';
+      }
     }
 
     // Handle Form Submit
@@ -170,98 +181,142 @@
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        // Validate required inputs
-        const requiredInputs = Array.from(regForm.querySelectorAll('input[required], select[required]'));
-        let firstInvalid = null;
+        // 1. Mandatory validation for ALL Edit Profile and Partner Preference fields
+        const requiredFieldIds = [
+          'r-profile-for',
+          'r-fullname',
+          'r-email',
+          'r-phone',
+          'r-gender',
+          'r-dob',
+          'r-religion',
+          'r-caste',
+          'r-manglik',
+          'r-degree',
+          'r-occupation',
+          'r-income',
+          'r-location',
+          'r-hobbies',
+          'r-diet',
+          'r-about',
+          'pref-age-min',
+          'pref-age-max',
+          'pref-height-min',
+          'pref-height-max',
+          'pref-location',
+          'pref-profession',
+          'pref-education',
+          'pref-religion',
+          'pref-caste',
+          'pref-diet',
+          'pref-drinking',
+          'pref-smoking',
+          'pref-other',
+          'pref-about-partner'
+        ];
 
-        requiredInputs.forEach(input => {
-          if (input.type === 'checkbox') {
-            if (!input.checked) {
-              input.style.outline = '2px solid red';
-              if (!firstInvalid) firstInvalid = input;
-            } else {
-              input.style.outline = '';
-            }
+        // If password field is present and marked required (e.g. brand new user registration)
+        const passInput = document.getElementById('r-password');
+        if (passInput && passInput.hasAttribute('required')) {
+          requiredFieldIds.push('r-password');
+        }
+
+        let firstInvalid = null;
+        requiredFieldIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const val = (el.value || '').trim();
+          if (!val) {
+            el.style.borderColor = '#D32F2F';
+            if (!firstInvalid) firstInvalid = el;
           } else {
-            if (!input.value.trim()) {
-              input.style.borderColor = '#D32F2F';
-              if (!firstInvalid) firstInvalid = input;
-            } else {
-              input.style.borderColor = '';
-            }
+            el.style.borderColor = '';
           }
         });
 
+        const termsCheck = document.getElementById('r-terms');
+        if (termsCheck && !termsCheck.checked) {
+          termsCheck.style.outline = '2px solid red';
+          if (!firstInvalid) firstInvalid = termsCheck;
+        } else if (termsCheck) {
+          termsCheck.style.outline = '';
+        }
+
         if (firstInvalid) {
+          alert('Please fill all the fields before saving your profile.');
           firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
           firstInvalid.focus();
-          if (typeof window.showToast === 'function') {
-            window.showToast('Please complete all required fields.', 'info');
-          }
           return;
         }
 
-        // Collect Personal Details
-        const profileFor = document.getElementById('r-profile-for')?.value || 'myself';
-        const fullname = document.getElementById('r-fullname')?.value.trim() || 'Candidate';
+        // 2. Collect actual entered personal details (no invented fallbacks)
+        const profileFor = document.getElementById('r-profile-for')?.value.trim() || '';
+        const fullname = document.getElementById('r-fullname')?.value.trim() || '';
         const email = document.getElementById('r-email')?.value.trim() || '';
         const phone = document.getElementById('r-phone')?.value.trim() || '';
-        const gender = document.getElementById('r-gender')?.value || 'female';
-        const dob = document.getElementById('r-dob')?.value || '';
+        const gender = document.getElementById('r-gender')?.value.trim() || '';
+        const dob = document.getElementById('r-dob')?.value.trim() || '';
 
-        // Calculate age
-        let age = 24;
+        // Calculate age accurately from user's entered DOB
+        let age = '';
         if (dob) {
           const birthDate = new Date(dob);
           const today = new Date();
-          age = today.getFullYear() - birthDate.getFullYear();
+          let calculatedAge = today.getFullYear() - birthDate.getFullYear();
           const m = today.getMonth() - birthDate.getMonth();
           if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
+            calculatedAge--;
           }
-          if (isNaN(age) || age < 18) age = 24;
+          if (!isNaN(calculatedAge) && calculatedAge > 0) {
+            age = String(calculatedAge);
+          }
         }
 
         const religionSelect = document.getElementById('r-religion');
-        const religion = religionSelect?.options[religionSelect.selectedIndex]?.text || 'Hindu';
-        const religionKey = religionSelect?.value || 'hindu';
-        const caste = document.getElementById('r-caste')?.value.trim() || 'Brahmin';
+        const religion = religionSelect ? religionSelect.options[religionSelect.selectedIndex]?.text.trim() : '';
+        const religionKey = religionSelect ? religionSelect.value.trim() : '';
+        const caste = document.getElementById('r-caste')?.value.trim() || '';
 
         const manglikSelect = document.getElementById('r-manglik');
-        const manglik = manglikSelect?.options[manglikSelect.selectedIndex]?.text || 'Non-Manglik';
-        const manglikKey = manglikSelect?.value || 'non-manglik';
+        const manglik = manglikSelect ? manglikSelect.options[manglikSelect.selectedIndex]?.text.trim() : '';
+        const manglikKey = manglikSelect ? manglikSelect.value.trim() : '';
 
-        const degree = document.getElementById('r-degree')?.value.trim() || 'Graduate';
-        const occupation = document.getElementById('r-occupation')?.value.trim() || 'Professional';
+        const degree = document.getElementById('r-degree')?.value.trim() || '';
+        const occupation = document.getElementById('r-occupation')?.value.trim() || '';
 
         const incomeSelect = document.getElementById('r-income');
-        const income = incomeSelect?.options[incomeSelect.selectedIndex]?.text || '₹15 - 25 Lakhs';
-        const incomeKey = incomeSelect?.value || '15-25';
+        const income = incomeSelect ? incomeSelect.options[incomeSelect.selectedIndex]?.text.trim() : '';
+        const incomeKey = incomeSelect ? incomeSelect.value.trim() : '';
 
-        const location = document.getElementById('r-location')?.value.trim() || 'Delhi NCR';
-        const hobbies = document.getElementById('r-hobbies')?.value.trim() || 'Reading, Classical Music, Travel & Family get-togethers';
-        const diet = document.getElementById('r-diet')?.value || 'Vegetarian';
-        const about = document.getElementById('r-about')?.value.trim() || 'Values honesty, mutual respect, family traditions, and seeking an educated, loving companion to share life\'s beautiful journey.';
+        const location = document.getElementById('r-location')?.value.trim() || '';
+        const hobbies = document.getElementById('r-hobbies')?.value.trim() || '';
+        const dietSelect = document.getElementById('r-diet');
+        const diet = dietSelect ? dietSelect.options[dietSelect.selectedIndex]?.text.trim() || dietSelect.value.trim() : '';
+        const about = document.getElementById('r-about')?.value.trim() || '';
 
-        const photo = uploadedPhotoBase64 || (gender === 'male' ? 'images/profile2.jpg' : 'images/profile1.jpg');
+        const photo = uploadedPhotoBase64 || existingProfile?.photo || 'images/default-avatar.svg';
 
-        // Collect Partner Preferences
+        // 3. Collect Partner Preferences (actual entered values)
         const partnerPreferences = {
-          ageMin: document.getElementById('pref-age-min')?.value.trim() || '21',
-          ageMax: document.getElementById('pref-age-max')?.value.trim() || '30',
-          heightMin: document.getElementById('pref-height-min')?.value || '',
-          heightMax: document.getElementById('pref-height-max')?.value || '',
-          location: document.getElementById('pref-location')?.value.trim() || 'No Preference',
-          profession: document.getElementById('pref-profession')?.value || 'No Preference',
-          education: document.getElementById('pref-education')?.value || 'No Preference',
-          religion: document.getElementById('pref-religion')?.value || 'No Preference',
-          caste: document.getElementById('pref-caste')?.value.trim() || 'No Preference',
-          diet: document.getElementById('pref-diet')?.value || 'No Preference',
-          drinking: document.getElementById('pref-drinking')?.value || 'No Preference',
-          smoking: document.getElementById('pref-smoking')?.value || 'No Preference',
+          ageMin: document.getElementById('pref-age-min')?.value.trim() || '',
+          ageMax: document.getElementById('pref-age-max')?.value.trim() || '',
+          heightMin: document.getElementById('pref-height-min')?.value.trim() || '',
+          heightMax: document.getElementById('pref-height-max')?.value.trim() || '',
+          location: document.getElementById('pref-location')?.value.trim() || '',
+          profession: document.getElementById('pref-profession')?.value.trim() || '',
+          education: document.getElementById('pref-education')?.value.trim() || '',
+          religion: document.getElementById('pref-religion')?.value.trim() || '',
+          caste: document.getElementById('pref-caste')?.value.trim() || '',
+          diet: document.getElementById('pref-diet')?.value.trim() || '',
+          drinking: document.getElementById('pref-drinking')?.value.trim() || '',
+          smoking: document.getElementById('pref-smoking')?.value.trim() || '',
           aboutPartner: document.getElementById('pref-about-partner')?.value.trim() || '',
           other: document.getElementById('pref-other')?.value.trim() || ''
         };
+
+        // Ensure gallery does not duplicate the primary photo
+        const existingGallery = Array.isArray(existingProfile?.gallery) ? existingProfile.gallery : [];
+        const cleanGallery = existingGallery.filter(p => p && p !== photo && p !== 'images/default-avatar.svg');
 
         const profileData = {
           profileId: existingProfile?.profileId || ('SJ-' + Math.floor(10000 + Math.random() * 90000)),
@@ -287,7 +342,7 @@
           about,
           photo,
           partnerPreferences,
-          gallery: existingProfile?.gallery || [],
+          gallery: cleanGallery,
           createdAt: existingProfile?.createdAt || new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
@@ -298,7 +353,7 @@
           activeUser.name = fullname;
           sessionStorage.setItem(window.ACTIVE_USER_KEY || 'sanjog_active_user', JSON.stringify(activeUser));
           const accounts = window.getAccounts ? window.getAccounts() : [];
-          const acc = accounts.find(a => a.email.toLowerCase() === activeUser.email.toLowerCase());
+          const acc = accounts.find(a => (a.email && a.email.toLowerCase() === activeUser.email?.toLowerCase()) || (a.username && a.username.toLowerCase() === activeUser.username?.toLowerCase()));
           if (acc) {
             acc.name = fullname;
             if (window.saveAccounts) window.saveAccounts(accounts);

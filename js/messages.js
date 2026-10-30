@@ -5,7 +5,8 @@
  * Responsibility:
  * Powers the interactive matrimonial chat interface on messages.html / message.html.
  * Handles contact conversation threads, message history rendering, new message
- * submission, simulated family auto-replies, and call requests.
+ * submission, and call requests.
+ * Automatic replies have been completely disabled.
  * =============================================================================
  */
 
@@ -55,6 +56,9 @@
       if (contactName.includes('Ananya')) contactImg = 'images/profile3.jpg';
       if (contactName.includes('Rohan')) contactImg = 'images/profile2.jpg';
 
+      const userProfile = window.getUserProfile ? window.getUserProfile() : null;
+      const userPhoto = (userProfile && userProfile.photo) ? userProfile.photo : 'images/default-avatar.svg';
+
       msgs.forEach(m => {
         const row = document.createElement('div');
         row.className = `chat-bubble-row ${m.type}`;
@@ -74,7 +78,7 @@
               ${m.text}
               <div style="font-size: 10.5px; color: rgba(255,255,255,0.8); text-align: right; margin-top: 4px;">${m.time} ✔✔</div>
             </div>
-            <img src="images/profile2.jpg" alt="User" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            <img src="${userPhoto}" alt="User" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
           `;
         }
         chatMessages.appendChild(row);
@@ -126,22 +130,6 @@
         if (!threads[activeContact]) threads[activeContact] = [];
         threads[activeContact].push({ type: 'sent', text, time: timeStr });
         renderThread(activeContact);
-
-        // Simulated auto-reply after 1.2 seconds
-        setTimeout(() => {
-          const replies = [
-            'Thank you for your message! Looking forward to speaking with our families.',
-            'That sounds wonderful! I will discuss with my parents and confirm our meeting time.',
-            'Namaste! Appreciate your response. Sanjog has indeed made finding genuine connections easier.'
-          ];
-          const randomReply = replies[Math.floor(Math.random() * replies.length)];
-          const replyTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          threads[activeContact].push({ type: 'received', text: randomReply, time: replyTime });
-          renderThread(activeContact);
-          if (typeof window.showToast === 'function') {
-            window.showToast(`New message received from ${activeContact}! 💬`, 'info');
-          }
-        }, 1200);
       });
     }
 

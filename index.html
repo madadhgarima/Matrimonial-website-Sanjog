@@ -14,112 +14,105 @@
   <link rel="stylesheet" href="home.css">
 </head>
 <body>
+  <!-- React Mount Point for Sanjog Matrimonial Homepage -->
+  <div id="root">
+    <!-- Progressive Fallback Markup -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+        <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+          <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+          <div class="logo-text">
+            <span class="logo-main">Sanjog</span>
+            <span class="logo-tagline">Choose Your Forever</span>
+          </div>
+        </a>
 
-  <!-- ==========================================================
-       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Clickable Tabs)
-       ========================================================== -->
-  <header class="navbar">
-    <div class="container nav-container">
-      
-      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
-      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
-        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
-        <div class="logo-text">
-          <span class="logo-main">Sanjog</span>
-          <span class="logo-tagline">Choose Your Forever</span>
-        </div>
-      </a>
+        <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+          <span></span>
+        </label>
 
-      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
-        <span></span>
-      </label>
+        <!-- Main Navigation Links (Clickable Working Tabs) -->
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="find-matches.html" class="nav-link">Find Matches</a>
+          <a href="my-matches.html" class="nav-link">My Matches</a>
+          <a href="shortlisted.html" class="nav-link">Favorites</a>
+          <a href="messages.html" class="nav-link">Messages</a>
+          <a href="notifications.html" class="nav-link">Notifications</a>
+          <a href="my-profile.html" class="nav-link">Profile</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
-      <!-- Main Navigation Links (Clickable Working Tabs) -->
-      <nav class="nav-menu">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="find-matches.html" class="nav-link">Find Matches</a>
-        <a href="my-matches.html" class="nav-link">My Matches</a>
-        <a href="shortlisted.html" class="nav-link">Favorites</a>
-        <a href="messages.html" class="nav-link">Messages</a>
-        <a href="notifications.html" class="nav-link">Notifications</a>
-        <a href="my-profile.html" class="nav-link">Profile</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
-
-      <!-- Desktop Action Buttons -->
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
-        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- ==========================================================
-       HERO SECTION WITH WEDDING IMAGE OVERLAY
-       ========================================================== -->
-  <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="container">
-      <div class="hero-content">
-        
-        <div class="hero-badge">
-          <span>&#10024;</span> India's Most Trusted Matrimonial Network
-        </div>
-        
-        <h1 class="hero-title">Meet. Connect. Find Your Sanjog.</h1>
-        <p class="hero-subtitle">Where meaningful connections turn into beautiful beginnings. Where hearts unite and families celebrate eternal beginnings.</p>
-        
-        <div class="hero-actions" style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-          <a href="register.html" class="btn btn-primary btn-lg">Create Profile</a>
-          <a href="find-matches.html" class="btn btn-white btn-lg" style="background: rgba(255,255,255,0.95); color: var(--primary);">Explore Matches</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       SECTION 1: WHY CHOOSE SANJOG
-       ========================================================== -->
-  <section class="section section-light">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Purity & Trust</span>
-        <h2 class="section-title">Why Choose Sanjog</h2>
-        <p class="section-description">We combine traditional family sensibilities with cutting-edge matchmaking technology to help you find your lifelong companion.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon-box">&#10004;</div>
-          <h3 class="feature-title">100% Verified Profiles</h3>
-          <p class="feature-desc">Every profile goes through rigorous mobile number, government ID, and education credential verification.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-box">&#128274;</div>
-          <h3 class="feature-title">Complete Privacy</h3>
-          <p class="feature-desc">Control who views your photo, contact details, and horoscope with granular privacy preferences.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-box">&#127919;</div>
-          <h3 class="feature-title">Handcrafted Matches</h3>
-          <p class="feature-desc">Smart compatibility matching based on lifestyle habits, community values, education, and career aspirations.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-box">&#128101;</div>
-          <h3 class="feature-title">Dedicated Matchmakers</h3>
-          <p class="feature-desc">Our experienced relationship advisors support families at every step, from first introduction to family meetings.</p>
+        <!-- Desktop Action Buttons -->
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
+
+    <!-- HERO SECTION WITH WEDDING IMAGE OVERLAY -->
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>✨</span> India's Most Trusted Matrimonial Network
+          </div>
+          
+          <h1 class="hero-title">Meet. Connect. Find Your Sanjog.</h1>
+          <p class="hero-subtitle">Where meaningful connections turn into beautiful beginnings. Where hearts unite and families celebrate eternal beginnings.</p>
+          
+          <div class="hero-actions" style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="register.html" class="btn btn-primary btn-lg">Create Profile</a>
+            <a href="find-matches.html" class="btn btn-white btn-lg" style="background: rgba(255,255,255,0.95); color: var(--primary);">Explore Matches</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: WHY CHOOSE SANJOG -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Purity & Trust</span>
+          <h2 class="section-title">Why Choose Sanjog</h2>
+          <p class="section-description">We combine traditional family sensibilities with cutting-edge matchmaking technology to help you find your lifelong companion.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">&#10004;</div>
+            <h3 class="feature-title">100% Verified Profiles</h3>
+            <p class="feature-desc">Every profile goes through rigorous mobile number, government ID, and education credential verification.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">&#128274;</div>
+            <h3 class="feature-title">Complete Privacy</h3>
+            <p class="feature-desc">Control who views your photo, contact details, and horoscope with granular privacy preferences.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">&#127919;</div>
+            <h3 class="feature-title">Handcrafted Matches</h3>
+            <p class="feature-desc">Smart compatibility matching based on lifestyle habits, community values, education, and career aspirations.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">&#128101;</div>
+            <h3 class="feature-title">Dedicated Matchmakers</h3>
+            <p class="feature-desc">Our experienced relationship advisors support families at every step, from first introduction to family meetings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- Sanjog Matrimonial Modular Scripts -->
   <script src="js/storage.js"></script>
   <script src="js/validation.js"></script>
@@ -132,5 +125,8 @@
   <script src="js/profile.js"></script>
   <script src="js/partner-preferences.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- React Entry Point -->
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

@@ -43,7 +43,7 @@
    * Initializes the Login page (login.html)
    */
   function initLoginPage() {
-    const loginForm = document.querySelector('#login-form, .form-box form');
+    const loginForm = document.getElementById('login-form');
     if (!loginForm) return;
 
     const msgBanner = document.getElementById('login-msg');
@@ -76,33 +76,13 @@
       msgBanner.style.display = 'block';
     }
 
-    // Dynamic password requirements UI updater
-    function updatePasswordRulesUI(password) {
-      const res = window.validatePasswordRequirements
-        ? window.validatePasswordRequirements(password)
-        : { valid: false, rules: { len: false, upper: false, lower: false, num: false, special: false } };
-
-      const setRule = (id, valid, text) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.className = 'rule-item ' + (valid ? 'rule-valid' : (password ? 'rule-invalid' : ''));
-        el.textContent = (valid ? '✔ ' : (password ? '✖ ' : '⚪ ')) + text;
-      };
-      setRule('rule-len', res.rules.len, 'At least 8 characters');
-      setRule('rule-upper', res.rules.upper, 'Uppercase letter (A–Z)');
-      setRule('rule-lower', res.rules.lower, 'Lowercase letter (a–z)');
-      setRule('rule-num', res.rules.num, 'Number (0–9)');
-      setRule('rule-special', res.rules.special, 'Special char (@, #, $, !)');
-      return res;
-    }
-
     // Parse URL parameters for status banners
     const params = new URLSearchParams(window.location.search);
     const msgType = params.get('msg');
     const prefillEmail = params.get('email');
     const redirectTarget = params.get('redirect');
 
-    // Pre-fill demo credentials for Garima Madadh for college evaluation
+    // Pre-fill demo credentials for Garima Madadh for evaluation
     if (prefillEmail && emailInput) {
       emailInput.value = decodeURIComponent(prefillEmail);
       passInput?.focus();
@@ -115,11 +95,9 @@
       }
     }
 
-    // Initialize password rules display and attach live input listeners
+    // Attach live input listeners to clear errors on user typing
     if (passInput) {
-      updatePasswordRulesUI(passInput.value);
       passInput.addEventListener('input', () => {
-        updatePasswordRulesUI(passInput.value);
         if (passError) passError.style.display = 'none';
         passInput.classList.remove('input-invalid');
       });
@@ -156,71 +134,77 @@
       if (emailInput) emailInput.classList.remove('input-invalid');
       if (passInput) passInput.classList.remove('input-invalid');
 
-      const rawEmail = emailInput ? emailInput.value : '';
+      const rawIdentifier = emailInput ? emailInput.value.trim() : '';
       const rawPassword = passInput ? passInput.value : '';
       const remember = rememberCheckbox ? rememberCheckbox.checked : false;
 
-      let hasValidationError = false;
+      // 1. Check for empty fields and trigger JavaScript alert() messages:
+      // - Both empty: "Please enter your email/username and password."
+      // - Email/username empty: "Please enter your email or username."
+      // - Password empty: "Please enter your password."
+      if (!rawIdentifier && !rawPassword.trim()) {
+        alert('Please enter your email/username and password.');
+        if (emailInput) emailInput.focus();
+        return;
+      }
 
-      // 1. Email field validation (must not be empty, must contain @ and valid domain)
-      const emailValidation = window.validateEmailFormat
-        ? window.validateEmailFormat(rawEmail)
-        : { valid: Boolean(rawEmail), message: '' };
+      if (!rawIdentifier) {
+        alert('Please enter your email or username.');
+        if (emailInput) emailInput.focus();
+        return;
+      }
 
-      if (!emailValidation.valid) {
-        hasValidationError = true;
-        if (emailError) {
-          emailError.textContent = emailValidation.message;
-          emailError.style.display = 'inline-block';
-        }
+      if (!rawPassword.trim()) {
+        alert('Please enter your password.');
+        if (passInput) passInput.focus();
+        return;
+      }
+
+      // 2. Credentials checking:
+      // Accepts either registered email address or registered username, together with password.
+      const accounts = window.getAccounts ? window.getAccounts() : [];
+      const enteredLower = rawIdentifier.toLowerCase();
+
+      // Step A: Find if any registered account matches this email or username
+      const existingAccount = accounts.find(acc => {
+        if (!acc) return false;
+        const accEmail = (acc.email || '').toLowerCase().trim();
+        const emailPrefix = accEmail.includes('@') ? accEmail.split('@')[0] : '';
+        const accUsername = (acc.username || '').toLowerCase().trim();
+        const accName = (acc.name || '').toLowerCase().trim();
+        const accNameNoSpace = accName.replace(/\s+/g, '');
+        return (
+          (accEmail && enteredLower === accEmail) ||
+          (emailPrefix && enteredLower === emailPrefix) ||
+          (accUsername && enteredLower === accUsername) ||
+          (accName && enteredLower === accName) ||
+          (accNameNoSpace && enteredLower === accNameNoSpace)
+        );
+      });
+
+      // Step B: If account is not registered, show a clear message telling them to create an account first
+      if (!existingAccount) {
+        showLoginMessage(`❌ No account found for "<strong>${rawIdentifier}</strong>". Please <a href="signup.html" style="color:#8D3F50; font-weight:600; text-decoration:underline;">create an account first</a>.`, 'error');
         if (emailInput) {
           emailInput.classList.add('input-invalid');
           emailInput.focus();
         }
+        return;
       }
 
-      // 2. Password validation (8+ chars, uppercase, lowercase, digit, special char)
-      const passwordValidation = window.validatePasswordRequirements
-        ? window.validatePasswordRequirements(rawPassword)
-        : { valid: Boolean(rawPassword), message: '' };
-
-      if (!passwordValidation.valid) {
-        hasValidationError = true;
-        if (passError) {
-          passError.textContent = passwordValidation.message;
-          passError.style.display = 'block';
-        }
+      // Step C: If account exists, verify password
+      if (existingAccount.password !== rawPassword) {
+        showLoginMessage('❌ Incorrect password. Please try again or use Forgot Password.', 'error');
         if (passInput) {
           passInput.classList.add('input-invalid');
-          if (!emailInput?.classList.contains('input-invalid')) {
-            passInput.focus();
-          }
-        }
-      }
-
-      // Stop submission and do NOT redirect if validation fails
-      if (hasValidationError) {
-        if (typeof window.showToast === 'function') {
-          window.showToast('Please correct the validation errors above.', 'info');
+          passInput.focus();
         }
         return;
       }
 
-      // 3. Credentials checking (case-insensitive email, exact password match)
-      const accounts = window.getAccounts ? window.getAccounts() : [];
-      const enteredEmailLower = rawEmail.trim().toLowerCase();
-      const matchedAccount = accounts.find(
-        acc => acc.email && acc.email.toLowerCase() === enteredEmailLower && acc.password === rawPassword
-      );
+      const matchedAccount = existingAccount;
 
-      if (!matchedAccount) {
-        // Show exact error message as required
-        showLoginMessage('Invalid email or password.', 'error');
-        if (passInput) passInput.classList.add('input-invalid');
-        return;
-      }
-
-      // 4. Success: activate user session and redirect to Home page
+      // 3. Success: activate user session and redirect to Home page
       if (window.setActiveSession) {
         window.setActiveSession(matchedAccount, remember);
       }
@@ -260,8 +244,8 @@
       });
     }
 
-    // Ensure link to signup page
-    const signupLink = document.querySelector('.signup-text a');
+    // Ensure link to registration / create account page
+    const signupLink = loginForm.querySelector('.signup-text a') || document.querySelector('.signup-text a');
     if (signupLink) {
       signupLink.setAttribute('href', 'signup.html');
     }
@@ -283,6 +267,135 @@
     const togglePassBtn = document.getElementById('toggle-reg-password');
     const toggleConfirmBtn = document.getElementById('toggle-reg-confirm');
     const submitBtn = document.getElementById('btn-reg-submit') || signupForm.querySelector('button[type="submit"]');
+
+    const nameError = document.getElementById('reg-name-error');
+    const emailError = document.getElementById('reg-email-error');
+    const passError = document.getElementById('reg-password-error');
+    const confirmError = document.getElementById('reg-confirm-error');
+    const passRulesBox = document.getElementById('reg-password-rules');
+
+    const ruleLen = document.getElementById('rule-len');
+    const ruleUpper = document.getElementById('rule-upper');
+    const ruleLower = document.getElementById('rule-lower');
+    const ruleNum = document.getElementById('rule-num');
+    const ruleSpecial = document.getElementById('rule-special');
+    const ruleSpace = document.getElementById('rule-space');
+
+    function clearFieldErrors() {
+      [nameError, emailError, passError, confirmError].forEach(span => {
+        if (span) {
+          span.style.display = 'none';
+          span.textContent = '';
+        }
+      });
+      [nameInput, emailInput, passInput, confirmInput].forEach(inp => {
+        if (inp) {
+          inp.classList.remove('input-invalid');
+          inp.style.borderColor = '';
+        }
+      });
+    }
+
+    function setFieldError(inputEl, errorSpan, message) {
+      if (errorSpan) {
+        errorSpan.textContent = message;
+        errorSpan.style.display = 'inline-block';
+      }
+      if (inputEl) {
+        inputEl.classList.add('input-invalid');
+        inputEl.focus();
+      }
+    }
+
+    function updatePasswordRulesUI(val) {
+      if (!passRulesBox) return;
+      if (!val) {
+        [
+          [ruleLen, '⚪ At least 8 characters'],
+          [ruleUpper, '⚪ Uppercase letter (A–Z)'],
+          [ruleLower, '⚪ Lowercase letter (a–z)'],
+          [ruleNum, '⚪ Number (0–9)'],
+          [ruleSpecial, '⚪ Special character (@#$%!...)'],
+          [ruleSpace, '⚪ No spaces']
+        ].forEach(([el, text]) => {
+          if (el) {
+            el.className = 'rule-item';
+            el.textContent = text;
+          }
+        });
+        return;
+      }
+
+      const res = typeof window.validatePasswordRequirements === 'function'
+        ? window.validatePasswordRequirements(val)
+        : { rules: { len: val.length >= 8, upper: /[A-Z]/.test(val), lower: /[a-z]/.test(val), num: /[0-9]/.test(val), special: /[^A-Za-z0-9\s]/.test(val), noSpace: !/\s/.test(val) } };
+      const r = res.rules;
+
+      function updateItem(el, passed, label) {
+        if (!el) return;
+        if (passed) {
+          el.className = 'rule-item rule-valid';
+          el.textContent = `✓ ${label}`;
+        } else {
+          el.className = 'rule-item rule-invalid';
+          el.textContent = `✗ ${label}`;
+        }
+      }
+
+      updateItem(ruleLen, r.len, 'At least 8 characters');
+      updateItem(ruleUpper, r.upper, 'Uppercase letter (A–Z)');
+      updateItem(ruleLower, r.lower, 'Lowercase letter (a–z)');
+      updateItem(ruleNum, r.num, 'Number (0–9)');
+      updateItem(ruleSpecial, r.special, 'Special character (@#$%!...)');
+      updateItem(ruleSpace, r.noSpace, 'No spaces');
+    }
+
+    // Attach input listeners for live validation feedback
+    if (passInput) {
+      passInput.addEventListener('focus', () => {
+        if (passRulesBox) passRulesBox.style.display = 'block';
+      });
+      passInput.addEventListener('input', () => {
+        if (passRulesBox) passRulesBox.style.display = 'block';
+        updatePasswordRulesUI(passInput.value);
+        if (passError) {
+          passError.style.display = 'none';
+          passError.textContent = '';
+        }
+        passInput.classList.remove('input-invalid');
+      });
+    }
+
+    if (emailInput) {
+      emailInput.addEventListener('input', () => {
+        if (emailError) {
+          emailError.style.display = 'none';
+          emailError.textContent = '';
+        }
+        emailInput.classList.remove('input-invalid');
+      });
+    }
+
+    if (nameInput) {
+      nameInput.addEventListener('input', () => {
+        if (nameError) {
+          nameError.style.display = 'none';
+          nameError.textContent = '';
+        }
+        nameInput.classList.remove('input-invalid');
+      });
+    }
+
+    if (confirmInput) {
+      confirmInput.addEventListener('input', () => {
+        if (confirmError) {
+          confirmError.style.display = 'none';
+          confirmError.textContent = '';
+        }
+        confirmInput.classList.remove('input-invalid');
+        confirmInput.style.borderColor = '';
+      });
+    }
 
     // Show/Hide Password Toggles
     if (togglePassBtn && passInput) {
@@ -322,45 +435,54 @@
 
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      clearFieldErrors();
 
       const name = nameInput ? nameInput.value.trim() : '';
-      const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
       const password = passInput ? passInput.value : '';
       const confirmPassword = confirmInput ? confirmInput.value : '';
 
-      // Validate required fields
-      if (!name || !email || !password || !confirmPassword) {
-        showRegMessage('⚠️ Please complete all required fields.', 'error');
-        if (!name) nameInput?.focus();
-        else if (!email) emailInput?.focus();
-        else if (!password) passInput?.focus();
-        else confirmInput?.focus();
+      // Validate Full Name
+      if (!name) {
+        setFieldError(nameInput, nameError, 'Please enter your full name.');
+        showRegMessage('⚠️ Please enter your full name.', 'error');
         return;
       }
 
-      // Validate email format
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        showRegMessage('⚠️ Please enter a valid email address (e.g. name@example.com).', 'error');
-        emailInput?.focus();
+      // Validate Gmail Address using validateEmailFormat
+      const emailValidation = typeof window.validateEmailFormat === 'function'
+        ? window.validateEmailFormat(email, true)
+        : { valid: /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email), message: 'Please enter a valid @gmail.com address.' };
+
+      if (!emailValidation.valid) {
+        setFieldError(emailInput, emailError, emailValidation.message);
+        showRegMessage(`⚠️ ${emailValidation.message}`, 'error');
         return;
       }
 
-      // Validate password length
-      if (password.length < 6) {
-        showRegMessage('⚠️ Password must be at least 6 characters long.', 'error');
-        passInput?.focus();
+      // Validate Password using validatePasswordRequirements
+      const passwordValidation = typeof window.validatePasswordRequirements === 'function'
+        ? window.validatePasswordRequirements(password)
+        : { valid: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9\s])\S{8,}$/.test(password), message: 'Password does not meet requirements.' };
+
+      if (!passwordValidation.valid) {
+        if (passRulesBox) passRulesBox.style.display = 'block';
+        updatePasswordRulesUI(password);
+        setFieldError(passInput, passError, passwordValidation.message);
+        showRegMessage(`⚠️ ${passwordValidation.message}`, 'error');
         return;
       }
 
-      // Validate password confirmation match
+      // Validate Confirm Password
+      if (!confirmPassword) {
+        setFieldError(confirmInput, confirmError, 'Please confirm your password.');
+        showRegMessage('⚠️ Please confirm your password.', 'error');
+        return;
+      }
+
       if (password !== confirmPassword) {
+        setFieldError(confirmInput, confirmError, 'Passwords do not match.');
         showRegMessage('❌ <strong>Passwords do not match.</strong> Please verify and re-type your password.', 'error');
-        if (confirmInput) {
-          confirmInput.value = '';
-          confirmInput.style.borderColor = '#C0392B';
-          confirmInput.focus();
-        }
         return;
       }
 
@@ -370,19 +492,29 @@
         return;
       }
 
-      // Check for duplicate registered email
+      // Check for duplicate registered identifier
       const accounts = window.getAccounts ? window.getAccounts() : [];
-      const duplicate = accounts.find(acc => acc.email.toLowerCase() === email);
+      const emailLower = email.toLowerCase();
+      const usernameFromEmail = emailLower.split('@')[0];
+
+      const duplicate = accounts.find(acc => {
+        if (!acc) return false;
+        const accEmail = (acc.email || '').toLowerCase().trim();
+        const accUsername = (acc.username || '').toLowerCase().trim();
+        return accEmail === emailLower || accUsername === usernameFromEmail;
+      });
+
       if (duplicate) {
+        setFieldError(emailInput, emailError, 'Email already registered.');
         showRegMessage(`❌ An account with <strong>${email}</strong> already exists. Please <a href="login.html?email=${encodeURIComponent(email)}" style="color:#8D3F50; font-weight:600; text-decoration:underline;">sign in here</a>.`, 'error');
-        emailInput?.focus();
         return;
       }
 
-      // Register new account
+      // Register new account (Gmail-only registration)
       const newAccount = {
         name,
-        email,
+        username: usernameFromEmail,
+        email: emailLower,
         password,
         createdAt: new Date().toISOString()
       };
@@ -390,12 +522,13 @@
       if (window.saveAccounts) window.saveAccounts(accounts);
 
       // Create initial profile skeleton under this account's isolated key
-      const accountProfileKey = (window.PROFILE_KEY_PREFIX || 'sanjog_profile_') + email;
+      const accountProfileKey = (window.PROFILE_KEY_PREFIX || 'sanjog_profile_') + emailLower;
       if (!localStorage.getItem(accountProfileKey)) {
         localStorage.setItem(accountProfileKey, JSON.stringify({
           profileId: 'SJ-' + Math.floor(10000 + Math.random() * 90000),
           fullname: name,
-          email: email,
+          email: emailLower,
+          username: usernameFromEmail,
           createdAt: new Date().toISOString()
         }));
       }
@@ -412,9 +545,15 @@
       }
 
       setTimeout(() => {
-        window.location.href = `login.html?msg=registered&email=${encodeURIComponent(email)}`;
+        window.location.href = `login.html?msg=registered&email=${encodeURIComponent(emailLower)}`;
       }, 1200);
     });
+
+    // Ensure link to login page
+    const loginLink = signupForm.querySelector('.signup-text a') || document.querySelector('.signup-text a');
+    if (loginLink) {
+      loginLink.setAttribute('href', 'login.html');
+    }
   }
 
   // Export to window

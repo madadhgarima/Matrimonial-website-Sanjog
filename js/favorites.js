@@ -83,7 +83,7 @@
         card.className = 'profile-card';
         card.innerHTML = `
           <div class="profile-card-img-wrap">
-            <img src="${profile.image}" alt="${profile.name}" class="profile-card-img">
+            <img src="${profile.image || profile.photo || 'images/default-avatar.svg'}" alt="${profile.name}" class="profile-card-img">
             <div class="profile-card-badges">
               <span class="badge badge-verified">✔ Verified</span>
               <span class="badge badge-premium">Premium</span>

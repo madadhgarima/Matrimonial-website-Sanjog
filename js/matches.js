@@ -35,7 +35,13 @@
       diet: 'Pure Vegetarian / Teetotaler',
       religion: 'Hindu / Brahmin (Gaur)',
       dob: '14 April 2001',
-      profileId: 'SJ-89241'
+      profileId: 'SJ-89241',
+      gallery: [
+        'images/profile1_gallery1.jpg',
+        'images/profile1_gallery2.jpg',
+        'images/profile1_gallery3.jpg',
+        'images/profile1_gallery4.jpg'
+      ]
     },
     {
       id: '2',

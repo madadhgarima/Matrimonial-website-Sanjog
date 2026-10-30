@@ -220,7 +220,7 @@
       // 2. Validate Email Address
       let emailValid = false;
       if (typeof window.validateEmailFormat === 'function') {
-        const emailCheck = window.validateEmailFormat(emailVal);
+        const emailCheck = window.validateEmailFormat(emailVal, false);
         emailValid = emailCheck.valid;
       } else {
         emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailVal);

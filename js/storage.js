@@ -22,6 +22,7 @@
   const DEFAULT_DEMO_ACCOUNTS = [
     {
       name: 'Garima Madadh',
+      username: 'garima',
       email: 'garima@example.com',
       password: 'Garima@123',
       createdAt: '2026-01-15T10:00:00.000Z'
@@ -68,7 +69,7 @@
       aboutPartner: 'Seeking an educated, humble, and supportive life partner who respects family values.',
       other: 'Non-Manglik preferred'
     },
-    gallery: ['images/profile1.jpg'],
+    gallery: [],
     createdAt: '2026-01-15T10:00:00.000Z',
     updatedAt: '2026-01-15T10:00:00.000Z'
   };
@@ -87,6 +88,7 @@
       const garimaIdx = accounts.findIndex(a => a.email && a.email.toLowerCase() === 'garima@example.com');
       if (garimaIdx >= 0) {
         accounts[garimaIdx].name = 'Garima Madadh';
+        accounts[garimaIdx].username = accounts[garimaIdx].username || 'garima';
         accounts[garimaIdx].password = 'Garima@123';
       } else {
         accounts.unshift(DEFAULT_DEMO_ACCOUNTS[0]);
@@ -96,6 +98,10 @@
       const garimaKey = PROFILE_KEY_PREFIX + 'garima@example.com';
       if (!localStorage.getItem(garimaKey)) {
         localStorage.setItem(garimaKey, JSON.stringify(DEFAULT_GARIMA_PROFILE));
+      }
+      const garimaUserKey = PROFILE_KEY_PREFIX + 'garima';
+      if (!localStorage.getItem(garimaUserKey)) {
+        localStorage.setItem(garimaUserKey, JSON.stringify(DEFAULT_GARIMA_PROFILE));
       }
     } catch (e) {
       console.warn('Could not seed demo accounts', e);
@@ -147,7 +153,13 @@
    */
   function setActiveSession(user, remember = false) {
     try {
-      const sessionData = JSON.stringify({ name: user.name, email: user.email.toLowerCase().trim() });
+      const userEmail = (user.email || '').toLowerCase().trim();
+      const userUsername = (user.username || (userEmail.includes('@') ? userEmail.split('@')[0] : userEmail) || '').toLowerCase().trim();
+      const sessionData = JSON.stringify({
+        name: user.name || 'Member',
+        email: userEmail,
+        username: userUsername
+      });
       sessionStorage.setItem(ACTIVE_USER_KEY, sessionData);
       if (remember) {
         localStorage.setItem(REMEMBERED_USER_KEY, sessionData);
@@ -241,12 +253,22 @@
   function getUserProfile() {
     try {
       const active = getActiveUser();
-      if (active && active.email) {
-        const userKey = PROFILE_KEY_PREFIX + active.email.toLowerCase().trim();
-        const raw = localStorage.getItem(userKey);
-        if (raw) return JSON.parse(raw);
+      if (active) {
+        const idKey = (active.email || active.username || '').toLowerCase().trim();
+        if (idKey) {
+          const userKey = PROFILE_KEY_PREFIX + idKey;
+          const raw = localStorage.getItem(userKey);
+          if (raw) return JSON.parse(raw);
+          if (active.username) {
+            const userKeyByName = PROFILE_KEY_PREFIX + active.username.toLowerCase().trim();
+            const rawByName = localStorage.getItem(userKeyByName);
+            if (rawByName) return JSON.parse(rawByName);
+          }
+        }
+        // Active user is logged in, but has no saved profile yet
+        return null;
       }
-      // Fallback for demo/legacy mode
+      // Demo/fallback mode only when NO user is logged in
       const legacy = localStorage.getItem('sanjog_user_profile');
       return legacy ? JSON.parse(legacy) : null;
     } catch (e) {
@@ -260,9 +282,13 @@
   function setUserProfile(profile) {
     try {
       const active = getActiveUser();
-      if (active && active.email) {
-        const userKey = PROFILE_KEY_PREFIX + active.email.toLowerCase().trim();
-        localStorage.setItem(userKey, JSON.stringify(profile));
+      if (active) {
+        if (active.email) {
+          localStorage.setItem(PROFILE_KEY_PREFIX + active.email.toLowerCase().trim(), JSON.stringify(profile));
+        }
+        if (active.username) {
+          localStorage.setItem(PROFILE_KEY_PREFIX + active.username.toLowerCase().trim(), JSON.stringify(profile));
+        }
       }
       // Also update legacy key for backward compatibility
       localStorage.setItem('sanjog_user_profile', JSON.stringify(profile));
@@ -274,8 +300,11 @@
    */
   function resetDemoProfile() {
     const active = getActiveUser();
-    if (active && active.email) {
-      localStorage.removeItem(PROFILE_KEY_PREFIX + active.email.toLowerCase().trim());
+    if (active) {
+      const idKey = (active.email || active.username || '').toLowerCase().trim();
+      if (idKey) {
+        localStorage.removeItem(PROFILE_KEY_PREFIX + idKey);
+      }
     }
     localStorage.removeItem('sanjog_user_profile');
     if (typeof window.showToast === 'function') {

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanjog Matrimonial - Register Account</title>
+
+  <!-- Google Fonts: Playfair Display for Headings, Poppins for Body Text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Main Split-Screen Container -->
+  <div class="login-container">
+
+    <!-- Left Section: Wedding Couple Image & Value Propositions -->
+    <section class="left-section">
+      <div class="left-content">
+        <div class="badge">✨ Verified &amp; Trusted Matrimonial Network</div>
+        
+        <div class="hero-text">
+          <h1>Begin Your Sacred Journey</h1>
+          <p>Where hearts connect, traditions unite, and families celebrate eternal beginnings.</p>
+        </div>
+
+        <div class="features-list">
+          <p>✓ 100% Free Registration</p>
+          <p>🔒 Strict Privacy Controls</p>
+          <p>❤️ Personalized Matches</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Section: Account Registration Form -->
+    <section class="right-section">
+      <div class="form-box">
+
+        <!-- Sanjog Logo & Tagline -->
+        <div class="brand">
+          <a href="index.html" class="brand-header-row" style="text-decoration: none; color: inherit;">
+            <div class="brand-logo">
+              <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+              <span class="brand-name">Sanjog</span>
+            </div>
+            <span class="brand-divider">|</span>
+            <span class="brand-tagline">Choose Your Forever</span>
+          </a>
+        </div>
+
+        <!-- Heading -->
+        <h2>Create Account</h2>
+        <p class="subtitle">Register in seconds to discover verified life matches</p>
+
+        <!-- Dynamic Feedback Message Banner -->
+        <div id="reg-msg" class="auth-msg-banner" role="alert"></div>
+
+        <!-- Registration Form -->
+        <form id="signup-form" action="#" method="POST" novalidate>
+
+          <!-- Full Name Input -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+              <label for="reg-fullname">Full Name</label>
+              <span id="reg-name-error" class="field-error-msg" style="display:none;" role="alert"></span>
+            </div>
+            <input 
+              type="text" 
+              id="reg-fullname" 
+              name="fullname" 
+              placeholder="e.g. Dr. Priya Sharma" 
+              required
+              autocomplete="name"
+            >
+          </div>
+
+          <!-- Email or Username Input -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+              <label for="reg-email">Gmail Address</label>
+              <span id="reg-email-error" class="field-error-msg" style="display:none;" role="alert"></span>
+            </div>
+            <input 
+              type="email" 
+              id="reg-email" 
+              name="email" 
+              placeholder="e.g. priya.sharma@gmail.com" 
+              required
+              autocomplete="email"
+            >
+          </div>
+
+          <!-- Password Input with Show/Hide Toggle -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+              <label for="reg-password">Password</label>
+              <span id="reg-password-error" class="field-error-msg" style="display:none;" role="alert"></span>
+            </div>
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="reg-password" 
+                name="password" 
+                placeholder="Create a secure password" 
+                required
+                autocomplete="new-password"
+              >
+              <button type="button" class="password-toggle-btn" id="toggle-reg-password" title="Show or hide password" aria-label="Toggle password visibility">👁️</button>
+            </div>
+            <!-- Password Requirements Box -->
+            <div id="reg-password-rules" class="password-rules-box" style="display: none;">
+              <div style="font-weight: 600; margin-bottom: 6px; color: #49393C;">Password must contain:</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                <span id="rule-len" class="rule-item">⚪ At least 8 characters</span>
+                <span id="rule-upper" class="rule-item">⚪ Uppercase letter (A–Z)</span>
+                <span id="rule-lower" class="rule-item">⚪ Lowercase letter (a–z)</span>
+                <span id="rule-num" class="rule-item">⚪ Number (0–9)</span>
+                <span id="rule-special" class="rule-item">⚪ Special character (@#$%!...)</span>
+                <span id="rule-space" class="rule-item">⚪ No spaces</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm Password Input with Show/Hide Toggle -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <span id="reg-confirm-error" class="field-error-msg" style="display:none;" role="alert"></span>
+            </div>
+            <div class="password-wrapper">
+              <input 
+                type="password" 
+                id="reg-confirm-password" 
+                name="confirmPassword" 
+                placeholder="Re-enter password to confirm" 
+                required
+                autocomplete="new-password"
+              >
+              <button type="button" class="password-toggle-btn" id="toggle-reg-confirm" title="Show or hide password" aria-label="Toggle password visibility">👁️</button>
+            </div>
+          </div>
+
+          <!-- Terms and Conditions Checkbox -->
+          <div class="form-options">
+            <div class="remember-me">
+              <input type="checkbox" id="reg-terms" name="terms" required checked>
+              <label for="reg-terms">I agree to Sanjog's <a href="#" style="color: #8D3F50;">Terms</a> &amp; <a href="#" style="color: #8D3F50;">Privacy Policy</a></label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btn-reg-submit" class="btn-login" style="display: block; width: 100%; text-align: center; border: none; cursor: pointer;">Register Account</button>
+
+          <!-- OR Divider -->
+          <div class="divider">
+            <span>OR</span>
+          </div>
+
+          <!-- Continue with Google Button -->
+          <a href="index.html" class="btn-google" style="text-decoration: none;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="google-icon">
+            <span>Sign up with Google</span>
+          </a>
+
+          <!-- Sign In Link -->
+          <p class="signup-text">
+            Already have an account? <a href="login.html" id="link-to-login">Login</a>
+          </p>
+
+          <!-- Terms and Privacy -->
+          <p class="terms-text">
+            Sanjog Matrimonial strictly preserves privacy and never shares your details without explicit consent.
+          </p>
+
+        </form>
+
+      </div>
+    </section>
+
+  </div>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

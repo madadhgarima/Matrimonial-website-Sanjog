@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ==========================================================================
+       SANJOG MATRIMONIAL - CANDIDATE REGISTRATION PORTAL (register.html)
+       Subject: Web Technologies (CSE 3rd Semester College Project - 25CSE0101)
+       Brand: Sanjog Matrimonial (Tagline: "Choose Your Forever")
+       Tech Stack: Pure HTML5 & CSS3 (Strictly ZERO JavaScript)
+       
+       Page Purpose:
+       New user onboarding form allowing prospective brides, grooms, or parents to register basic, religious, professional, and partner preference details.
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Sanjog Matrimonial</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .form-section {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 10px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       HEADER & NAVIGATION BAR (Pure CSS Responsive Mobile Menu - Zero JS)
+       ========================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <!-- Sanjog Brand Identity (Logo Image + Romantic Serif Font) -->
+      <a href="index.html" class="brand-logo" aria-label="Sanjog Matrimonial Homepage">
+        <img src="loginimages/logo.jpeg" alt="Sanjog Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="logo-main">Sanjog</span>
+          <span class="logo-tagline">Choose Your Forever</span>
+        </div>
+      </a>
+
+      <!-- Pure CSS Mobile Hamburger Checkbox Toggle (Zero JavaScript) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle Navigation">
+        <span></span>
+      </label>
+
+      <!-- Main Navigation Links (All Non-Working) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="find-matches.html" class="nav-link">Find Matches</a>
+        <a href="my-matches.html" class="nav-link">My Matches</a>
+        <a href="shortlisted.html" class="nav-link">Favorites</a>
+        <a href="messages.html" class="nav-link">Messages</a>
+        <a href="notifications.html" class="nav-link">Notifications</a>
+        <a href="my-profile.html" class="nav-link">Profile</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Desktop Action Buttons -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main-content container">
+
+    <div style="text-align: center; margin-bottom: 32px;">
+      <span
+        style="color: var(--primary); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Begin
+        Your Sacred Journey</span>
+      <h1 style="font-family: var(--font-heading); font-size: 2.3rem; color: var(--text-dark); margin: 6px 0 10px 0;">
+        Create Your Sanjog Profile
+      </h1>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Over 50,000+ verified prospective brides and grooms are waiting to connect. 100% free registration.
+      </p>
+    </div>
+
+    <form id="register-form" action="#" method="POST">
+
+      <!-- ======================================================== -->
+      <!-- SECTION 1: PERSONAL DETAILS                             -->
+      <!-- ======================================================== -->
+      <div class="form-part-header" style="background: linear-gradient(135deg, #FFF9F3 0%, #FFFFFF 100%); border-left: 5px solid var(--primary); padding: 18px 24px; margin-bottom: 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--primary);">Section 1 of 2</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.65rem; color: var(--text-dark); margin: 2px 0 0 0;">👤 Personal Details</h2>
+        </div>
+        <span style="font-size: 12.5px; color: var(--text-muted); background: #fff; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border);">Your Biodata &amp; Background</span>
+      </div>
+
+      <!-- Section 1.1: Basic Account Information -->
+      <div class="form-section">
+        <h3 class="form-section-title">1.1 Account &amp; Profile Ownership</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-profile-for">Creating Profile For</label>
+            <select id="r-profile-for" name="profile_for" class="form-select" required>
+              <option value="myself">Self</option>
+              <option value="daughter">Daughter</option>
+              <option value="son">Son</option>
+              <option value="sister">Sister</option>
+              <option value="brother">Brother</option>
+              <option value="relative">Relative / Friend</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-fullname">Full Name</label>
+            <input type="text" id="r-fullname" name="fullname" class="form-input" placeholder="e.g. Dr. Priya Sharma"
+              required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-email">Email Address</label>
+            <input type="email" id="r-email" name="email" class="form-input" placeholder="priya@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-password">Create Password</label>
+            <input type="password" id="r-password" name="password" class="form-input"
+              placeholder="At least 8 characters" minlength="8" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-phone">Mobile Number (for OTP verification)</label>
+            <input type="tel" id="r-phone" name="phone" class="form-input" placeholder="+91 98765 43210"
+              pattern="[+0-9 ](10, 15)" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-gender">Gender</label>
+            <select id="r-gender" name="gender" class="form-select" required>
+              <option value="female">Female (Bride)</option>
+              <option value="male">Male (Groom)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Personal & Religion -->
+      <div class="form-section">
+        <h3 class="form-section-title">2. Personal &amp; Community Background</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-dob">Date of Birth</label>
+            <input type="date" id="r-dob" name="dob" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-religion">Religion</label>
+            <select id="r-religion" name="religion" class="form-select" required>
+              <option value="hindu">Hindu</option>
+              <option value="sikh">Sikh</option>
+              <option value="jain">Jain</option>
+              <option value="christian">Christian</option>
+              <option value="muslim">Muslim</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-caste">Caste / Community</label>
+            <input type="text" id="r-caste" name="caste" class="form-input" placeholder="e.g. Brahmin, Khatri, Arora"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-manglik">Manglik Status</label>
+            <select id="r-manglik" name="manglik" class="form-select">
+              <option value="non-manglik">Non-Manglik</option>
+              <option value="manglik">Manglik</option>
+              <option value="anshik">Anshik Manglik</option>
+              <option value="dont-know">Don't Know</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Education & Career -->
+      <div class="form-section">
+        <h3 class="form-section-title">3. Education &amp; Career</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-degree">Highest Degree</label>
+            <input type="text" id="r-degree" name="degree" class="form-input" placeholder="e.g. MBBS, B.Tech, MBA"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-occupation">Occupation / Job Title</label>
+            <input type="text" id="r-occupation" name="occupation" class="form-input"
+              placeholder="e.g. Consultant Physician, Software Engineer" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-income">Annual Income</label>
+            <select id="r-income" name="income" class="form-select" required>
+              <option value="5-10">₹5 - 10 Lakhs</option>
+              <option value="10-15">₹10 - 15 Lakhs</option>
+              <option value="15-25" selected>₹15 - 25 Lakhs</option>
+              <option value="25-50">₹25 - 50 Lakhs</option>
+              <option value="50+">₹50+ Lakhs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-location">Current City of Residence</label>
+            <input type="text" id="r-location" name="location" class="form-input"
+              placeholder="e.g. Delhi NCR, Chandigarh" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: About Me, Lifestyle & Profile Photo -->
+      <div class="form-section">
+        <h3 class="form-section-title">4. About You, Lifestyle &amp; Profile Photo</h3>
+
+        <div class="form-row" style="align-items: center;">
+          <div class="form-group">
+            <label class="form-label" for="r-photo">Upload Profile Photo</label>
+            <input type="file" id="r-photo" name="photo" class="form-input" accept="image/*">
+            <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Recommended: Clear, high-resolution portrait (JPG or PNG).</small>
+          </div>
+          <div class="form-group" style="text-align: center;">
+            <div id="photo-preview-wrap" style="display: inline-block; width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--primary); overflow: hidden; background: var(--bg-cream); box-shadow: var(--shadow-sm); vertical-align: middle;">
+              <img id="photo-preview" src="images/profile1.jpg" alt="Photo Preview" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <span style="display: block; font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Photo Preview</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="r-hobbies">Hobbies &amp; Interests</label>
+            <input type="text" id="r-hobbies" name="hobbies" class="form-input" placeholder="e.g. Classical Dance, Reading, Travel, Yoga, Photography">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="r-diet">Diet / Food Habits</label>
+            <select id="r-diet" name="diet" class="form-select">
+              <option value="Pure Vegetarian / Teetotaler">Pure Vegetarian / Teetotaler</option>
+              <option value="Vegetarian" selected>Vegetarian</option>
+              <option value="Eggetarian">Eggetarian</option>
+              <option value="Non-Vegetarian">Non-Vegetarian</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="r-about">About Yourself / Biodata Summary</label>
+          <textarea id="r-about" name="about" class="form-input" rows="3" placeholder="Tell prospective matches and families about your personality, values, career aspirations, and what you cherish in a partner..."></textarea>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 2: PARTNER PREFERENCES                          -->
+      <!-- ======================================================== -->
+      <div class="form-part-header" id="partner-preferences" style="background: linear-gradient(135deg, #FFF9F3 0%, #FFFFFF 100%); border-left: 5px solid var(--secondary); padding: 18px 24px; margin: 36px 0 24px 0; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--secondary);">Section 2 of 2</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.65rem; color: var(--text-dark); margin: 2px 0 0 0;">💍 Partner Preferences</h2>
+        </div>
+        <span style="font-size: 12.5px; color: var(--text-muted); background: #fff; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border);">Qualities &amp; Expectations in Ideal Match</span>
+      </div>
+
+      <!-- Partner Preference Group 2.1: Basic & Physical Preferences -->
+      <div class="form-section">
+        <h3 class="form-section-title">2.1 Age, Height &amp; Location Preferences</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-age-min">Preferred Age (Minimum)</label>
+            <input type="number" id="pref-age-min" name="pref_age_min" class="form-input" min="18" max="75" placeholder="e.g. 21" value="21">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-age-max">Preferred Age (Maximum)</label>
+            <input type="number" id="pref-age-max" name="pref_age_max" class="form-input" min="18" max="75" placeholder="e.g. 30" value="30">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-height-min">Preferred Height (Minimum) <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <select id="pref-height-min" name="pref_height_min" class="form-select">
+              <option value="" selected>No Preference / Any Height</option>
+              <option value="4'8&quot; (142 cm)">4'8&quot; (142 cm)</option>
+              <option value="4'10&quot; (147 cm)">4'10&quot; (147 cm)</option>
+              <option value="5'0&quot; (152 cm)">5'0&quot; (152 cm)</option>
+              <option value="5'2&quot; (157 cm)">5'2&quot; (157 cm)</option>
+              <option value="5'4&quot; (162 cm)">5'4&quot; (162 cm)</option>
+              <option value="5'6&quot; (167 cm)">5'6&quot; (167 cm)</option>
+              <option value="5'8&quot; (172 cm)">5'8&quot; (172 cm)</option>
+              <option value="5'10&quot; (178 cm)">5'10&quot; (178 cm)</option>
+              <option value="6'0&quot; (183 cm)">6'0&quot; (183 cm)</option>
+              <option value="6'2&quot; (188 cm)">6'2&quot; (188 cm)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-height-max">Preferred Height (Maximum) <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <select id="pref-height-max" name="pref_height_max" class="form-select">
+              <option value="" selected>No Preference / Any Height</option>
+              <option value="5'2&quot; (157 cm)">5'2&quot; (157 cm)</option>
+              <option value="5'4&quot; (162 cm)">5'4&quot; (162 cm)</option>
+              <option value="5'6&quot; (167 cm)">5'6&quot; (167 cm)</option>
+              <option value="5'8&quot; (172 cm)">5'8&quot; (172 cm)</option>
+              <option value="5'10&quot; (178 cm)">5'10&quot; (178 cm)</option>
+              <option value="6'0&quot; (183 cm)">6'0&quot; (183 cm)</option>
+              <option value="6'2&quot; (188 cm)">6'2&quot; (188 cm)</option>
+              <option value="6'4&quot;+ (193+ cm)">6'4&quot;+ (193+ cm)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="pref-location">Preferred Location / Cities</label>
+          <input type="text" id="pref-location" name="pref_location" class="form-input" placeholder="e.g. Delhi NCR, Mumbai, Bangalore (or No Preference)">
+          <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Leave blank or type &quot;No Preference&quot; if open to candidates from any city or state.</small>
+        </div>
+      </div>
+
+      <!-- Partner Preference Group 2.2: Professional, Educational & Religious Preferences -->
+      <div class="form-section">
+        <h3 class="form-section-title">2.2 Education, Profession &amp; Religious Preferences</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-profession">Preferred Profession / Career Field</label>
+            <select id="pref-profession" name="pref_profession" class="form-select">
+              <option value="No Preference" selected>No Preference</option>
+              <option value="IT / Software">IT / Software</option>
+              <option value="Doctor / Healthcare">Doctor / Healthcare</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Business / Entrepreneur">Business / Entrepreneur</option>
+              <option value="Government Job">Government Job</option>
+              <option value="Banking / Finance">Banking / Finance</option>
+              <option value="Teaching / Education">Teaching / Education</option>
+              <option value="Law">Law</option>
+              <option value="Design / Creative">Design / Creative</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-education">Preferred Educational Qualification</label>
+            <select id="pref-education" name="pref_education" class="form-select">
+              <option value="No Preference" selected>No Preference</option>
+              <option value="High School">High School</option>
+              <option value="Diploma">Diploma</option>
+              <option value="Bachelor's Degree">Bachelor's Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="PhD / Doctorate">PhD / Doctorate</option>
+              <option value="Professional Degree">Professional Degree</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-religion">Preferred Religion</label>
+            <select id="pref-religion" name="pref_religion" class="form-select">
+              <option value="No Preference" selected>No Preference / Open to All Religions</option>
+              <option value="Hindu">Hindu</option>
+              <option value="Sikh">Sikh</option>
+              <option value="Jain">Jain</option>
+              <option value="Muslim">Muslim</option>
+              <option value="Christian">Christian</option>
+              <option value="Buddhist">Buddhist</option>
+              <option value="Parsi / Jewish / Other">Parsi / Jewish / Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-caste">Preferred Community / Caste <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <input type="text" id="pref-caste" name="pref_caste" class="form-input" placeholder="e.g. Brahmin, Agarwal, or No Preference">
+            <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Leave blank or type &quot;No Preference&quot; if community does not matter.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner Preference Group 2.3: Lifestyle, About Ideal Partner & Other Preferences -->
+      <div class="form-section">
+        <h3 class="form-section-title">2.3 Lifestyle Preferences &amp; Ideal Partner Qualities</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-diet">Diet / Food Habits Preference</label>
+            <select id="pref-diet" name="pref_diet" class="form-select">
+              <option value="No Preference" selected>No Preference / Any Diet</option>
+              <option value="Pure Vegetarian">Pure Vegetarian</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Eggetarian">Eggetarian</option>
+              <option value="Non-Vegetarian">Non-Vegetarian</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-drinking">Drinking Preference <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <select id="pref-drinking" name="pref_drinking" class="form-select">
+              <option value="No Preference" selected>No Preference / Any</option>
+              <option value="Non-Drinker / Teetotaler Only">Non-Drinker / Teetotaler Only</option>
+              <option value="Occasional / Social Drinker">Occasional / Social Drinker</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pref-smoking">Smoking Preference <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <select id="pref-smoking" name="pref_smoking" class="form-select">
+              <option value="No Preference" selected>No Preference / Any</option>
+              <option value="Non-Smoker Only">Non-Smoker Only</option>
+              <option value="Occasional Smoker">Occasional Smoker</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pref-other">Other Preferences / Specific Requirements <small style="color:var(--text-muted); font-weight:normal;">(Optional)</small></label>
+            <input type="text" id="pref-other" name="pref_other" class="form-input" placeholder="e.g. Willing to relocate abroad, horoscope matching, etc.">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label" for="pref-about-partner">About My Ideal Partner</label>
+          <textarea id="pref-about-partner" name="pref_about_partner" class="form-input" rows="3" placeholder="Describe the character, values, personality, and qualities you cherish in a life companion (e.g. caring, family-oriented, ambitious, kind-hearted)..."></textarea>
+        </div>
+      </div>
+
+      <!-- Terms and Submit -->
+      <div
+        style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 30px;">
+        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px;">
+          <input type="checkbox" id="r-terms" name="terms" style="margin-top: 4px;" required>
+          <label for="r-terms" style="font-size: 13px; color: var(--text-dark);">
+            I agree to Sanjog's <a href="#" style="color: var(--primary);">Terms of Use</a>, <a href="#"
+              style="color: var(--primary);">Privacy Policy</a>, and confirm that all details provided are authentic and
+            intended solely for marriage.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">
+          Complete Registration &amp; Find Matches →
+        </button>
+
+        <p style="text-align: center; font-size: 13.5px; color: var(--text-muted); margin-top: 16px;">
+          Already have an account? <a href="login.html" style="color: var(--primary); font-weight: 600;">Sign in to your
+            Sanjog account</a>
+        </p>
+      </div>
+
+    </form>
+
+  </main>
+  <!-- Sanjog Matrimonial Modular Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/partner-preferences.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
